@@ -13,7 +13,7 @@ public class UserInfoVO {
 	private String ui_pwd;
 	private String ui_nick;
 	private Integer ui_support;
-	private String ui_eamil;
+	private String ui_email;
 	private String ui_tell;
 	private Integer ui_active;
 }
