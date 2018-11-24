@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.USERINFO">
+	<insert id="userinfoInsert" parameterType="userVO">
+	insert into user_info values(#{ui_no},#{ui_id},#{ui_name},#{ui_pwd},#{ui_nick},#{ui_support},#{ui_eamil},#{ui_tell},#{ui_active});
+	</insert>
+</mapper>
