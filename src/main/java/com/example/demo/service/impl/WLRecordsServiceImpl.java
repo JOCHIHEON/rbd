@@ -4,9 +4,9 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.collection.Record;
 import com.example.demo.repository.WLRecordsRepository;
 import com.example.demo.service.WLRecordsService;
-import com.example.demo.vo.Record;
 
 @Service
 public class WLRecordsServiceImpl implements WLRecordsService{
