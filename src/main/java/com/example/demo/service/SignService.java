@@ -1,0 +1,21 @@
+package com.example.demo.service;
+
+import java.util.List;
+
+import com.example.demo.vo.UserInfoVO;
+
+public interface SignService {
+
+	public Integer insertSign(UserInfoVO userVo);// 가입
+
+	public Integer updateSign(UserInfoVO userVo);// 수정
+
+	public Integer findId(String ui_id); // 아이디 중복 조회
+
+	public Integer selectSign(UserInfoVO userVo);// 로그인
+	
+	public UserInfoVO selectView(Integer ui_no); //개인 뷰
+	
+	public List<UserInfoVO> selectListView(UserInfoVO userVo); //회원 리스트
+	
+}
