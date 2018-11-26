@@ -7,7 +7,7 @@
     select * from japan
     <where>
     	<if test="jpnum!=null">
-    		jpnum = #{jpnum}
+    		jpnum = #{jpnum} 
     	</if>
     </where>
   </select>

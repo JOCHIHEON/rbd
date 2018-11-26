@@ -3,9 +3,9 @@ package com.example.demo.repository;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.example.demo.vo.WLRecords;
+import com.example.demo.vo.Record;
 
-public interface WLRecordsRepository extends MongoRepository<WLRecords, String> {
+public interface WLRecordsRepository extends MongoRepository<Record, String> {
 
-	public WLRecords findBy_id(ObjectId _id);
+	public Record findBy_id(ObjectId _id);
 }

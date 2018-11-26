@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.service.WLRecordsService;
-import com.example.demo.vo.WLRecords;
+import com.example.demo.vo.Record;
 
 @RestController
 public class WLRecordsController {
@@ -16,7 +16,7 @@ public class WLRecordsController {
 	private WLRecordsService wlrs;
 	
 	@GetMapping("/wlrs/{id}")
-	public WLRecords getWLRecords(@PathVariable("id") ObjectId id) {
+	public Record getWLRecords(@PathVariable("id") ObjectId id) {
 		return wlrs.getWLRecords(id);
 	}
 }

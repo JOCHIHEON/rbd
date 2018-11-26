@@ -6,14 +6,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Data;
 
 @Data
-@Document("wlrecords")
-public class WLRecords {
-
+@Document("record")
+public class Record {
 	private ObjectId _id;
-	private Integer num;
-	private String hname;
-	private String aname;
-	private Integer hscore;
-	private Integer ascore;
-	
+	private String date;
+	private String homeName;
+	private String awayName;
+	private Integer homeScore;
+	private Integer awayScore;
 }
