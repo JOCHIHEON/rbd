@@ -12,7 +12,7 @@ public interface SignService {
 
 	public Integer findId(String ui_id); // 아이디 중복 조회
 
-	public Integer selectSign(UserInfoVO userVo);// 로그인
+	public UserInfoVO selectSign(UserInfoVO userVo);// 로그인
 	
 	public UserInfoVO selectView(Integer ui_no); //개인 뷰
 	

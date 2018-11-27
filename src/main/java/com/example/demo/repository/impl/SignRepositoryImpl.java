@@ -11,46 +11,46 @@ import com.example.demo.repository.SignRepository;
 import com.example.demo.vo.UserInfoVO;
 
 @Repository
-public class SignRepositoryImpl implements SignRepository{
-	
+public class SignRepositoryImpl implements SignRepository {
+
 	@Autowired
 	@Qualifier("sqlSessionTemplate")
 	private SqlSession ss;
-	
+
 	@Override
 	public Integer insertSign(UserInfoVO userVo) {
 		// TODO Auto-generated method stub
-		return ss.insert("com.example.demo.USERINFO",userVo);
+		return ss.insert("com.example.demo.USERINFO.userinfoInsert", userVo);
 	}
 
 	@Override
 	public Integer updateSign(UserInfoVO userVo) {
 		// TODO Auto-generated method stub
-		return null;
+		return ss.update("com.example.demo.USERINFO.userinfoUpdate", userVo);
 	}
 
 	@Override
 	public Integer findId(String ui_id) {
 		// TODO Auto-generated method stub
-		return null;
+		return ss.selectOne("com.example.demo.USERINFO.userinfoIDCheck", ui_id);
 	}
 
 	@Override
-	public Integer selectSign(UserInfoVO userVo) {
+	public UserInfoVO selectSign(UserInfoVO userVo) {
 		// TODO Auto-generated method stub
-		return null;
+		return ss.selectOne("com.example.demo.USERINFO.userinfoSelect", userVo);
 	}
 
 	@Override
 	public UserInfoVO selectView(Integer ui_no) {
 		// TODO Auto-generated method stub
-		return null;
+		return ss.selectOne("com.example.demo.USERINFO.userinfoView", ui_no);
 	}
 
 	@Override
 	public List<UserInfoVO> selectListView(UserInfoVO userVo) {
 		// TODO Auto-generated method stub
-		return null;
+		return ss.selectList("com.example.demo.USERINFO.userinfoList",userVo);
 	}
 
 }
