@@ -21,7 +21,7 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 		HttpSession session = request.getSession();
 		String manager = (String)session.getAttribute("manager");
 		if(session == null ||  null == manager) {
-			throw new Exception("None");
+			throw new Exception("None Admin");
 		}
 		return super.preHandle(request, response, handler);
 	}

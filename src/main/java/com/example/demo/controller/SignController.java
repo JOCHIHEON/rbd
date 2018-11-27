@@ -28,7 +28,7 @@ public class SignController {
 		return signService.insertSign(userVo);
 	}
 	
-	@PutMapping("/sign")
+	@PutMapping("/user")
 	public Integer updateSign(@RequestBody UserInfoVO userVo){
 		return signService.updateSign(userVo);
 	}
