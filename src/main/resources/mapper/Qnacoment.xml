@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.QNACOMENT">
+	<insert id="insertQcoment" parameterType="qnacomentVO">
+		insert into qnacoment(qnaco_content, qna_credat, qna_moddate, ad_no, qna_no) values(#{qnaco_content}, NOW(), NOW(), #{ad_no}, #{qna_no})
+	</insert>
+	<update id="updateQcoment" parameterType="qnacomentVO">
+		update qnacoment
+		<set>
+			qna_content = #{qna_content}, qna_moddate=now(), ad_no = #{ad_no}
+		</set>
+		where qna_no = #{qna_no} and qnaco_no = #{qnaco_no}
+	</update>
+	<delete id="deleteQcoment" parameterType="qnacomentVO">
+		delete from qnacoment where qnaco_no = #{qnaco_no} and qna_no = #{qna_no}
+	</delete>
+</mapper>

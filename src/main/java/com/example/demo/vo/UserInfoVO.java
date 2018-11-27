@@ -2,6 +2,8 @@ package com.example.demo.vo;
 
 import org.apache.ibatis.type.Alias;
 
+import com.example.demo.collection.Paging;
+
 import lombok.Data;
 
 @Data
@@ -16,5 +18,6 @@ public class UserInfoVO {
 	private String ui_email;
 	private String ui_tell;
 	private Integer ui_active;
+	private Paging paging;
 }
 

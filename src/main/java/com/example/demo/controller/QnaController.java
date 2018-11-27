@@ -10,16 +10,26 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.collection.Paging;
 import com.example.demo.service.QnaboardService;
+import com.example.demo.service.QnacomentService;
 import com.example.demo.vo.QnaboardVO;
+import com.example.demo.vo.QnacomentVO;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
-public class QnaboardController {
-	
+public class QnaController {
+	/* qnaboard */
 	@Autowired
 	private QnaboardService qnaService;
+	
+	@Autowired
+	private QnacomentService qcomentService;
 	
 	@PostMapping("/qna")
 	public Integer insertQnA(@RequestBody QnaboardVO qnaVo) {
@@ -37,7 +47,9 @@ public class QnaboardController {
 	}
 	
 	@GetMapping("/qna")
-	public List<QnaboardVO> selectListQnA(@ModelAttribute QnaboardVO qnaVo){
+	public List<QnaboardVO> selectListQnA(@ModelAttribute QnaboardVO qnaVo, @RequestParam(value="clickBlock") Integer clickBlock){
+		qnaVo.setPaging(new Paging());
+		qnaVo.getPaging().setClickBlock(clickBlock);
 		return qnaService.selectListQnA(qnaVo);
 	}
 	
@@ -45,4 +57,20 @@ public class QnaboardController {
 	public Integer deleteQnA(@RequestBody QnaboardVO qnaVo) {
 		return qnaService.deleteQnA(qnaVo);
 	}
+	
+	/* qnacoment */
+	@PostMapping("/qnareply")
+	public Integer insertQnAComent(@RequestBody QnacomentVO qnacomentVo) {
+		return qcomentService.insertQnacoment(qnacomentVo);
+	}
+	
+	@PutMapping("/qnareply")
+	public Integer updateQnAComent(@RequestBody QnacomentVO qnacomentVo) {
+		return qcomentService.updateQnacoment(qnacomentVo);
+	}	
+	
+	@DeleteMapping("/qnareply")
+	public Integer deleteQnAComent(@RequestBody QnacomentVO qnacomentVo) {
+		return qcomentService.deleteQnacoment(qnacomentVo);
+	}	
 }

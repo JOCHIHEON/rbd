@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.admininfo">
+	<insert id="admininfoInsert" parameterType="admininfoVo">
+		insert into
+		admin_info(ad_id, ad_name, ad_pwd, ad_nick, ad_email, ad_tell)
+		values(#{ad_id}, #{ad_name}, #{ad_pwd}, #{ad_nick}, #{ad_email}, #{ad_tell})
+	</insert><!-- 관리자 등록 -->
+
+	<update id="admininfoUpdate" parameterType="admininfoVo">
+		update admin_info
+		<set>
+			<if test="ad_name != null">ad_name = #{ad_name}</if>
+			<if test="ad_pwd != null">, ad_pwd = #{ad_pwd}</if>
+			<if test="ad_nick != null">, ad_nick = #{ad_nick}</if>
+			<if test="ad_email != null">, ad_email = #{ad_email}</if>
+			<if test="ad_tell != null">, ad_tell = #{ad_tell}</if>
+			<if test="ad_active != null">, ad_active = #{ad_active}</if>
+		</set>
+		where ad_no = #{ad_no}
+	</update><!-- 관리자 정보 수정 -->
+	
+	<select id="admininfoIDCheck" resultType="int" parameterType="String">
+		select count(*) from admin_info where ad_id = #{ad_id}
+	</select><!-- 아이디 중복 조회 -->
+	
+	<select id="admininfoSelect" resultType="admininfoVo" parameterType="admininfoVo">
+		select ad_no, ad_id from admin_info where ad_id = #{ad_id} and ad_pwd = #{ad_pwd}
+	</select><!-- 로그인 -->
+	
+	<select id="admininfoView" resultType="admininfoVo" parameterType="Integer">
+		select ad_id, ad_name, ad_nick, ad_email, ad_tell from admin_info where ad_no = #{ad_no}
+	</select><!-- 개인 뷰 -->
+	
+	<select id="admininfoList" resultType="admininfoVo" parameterType="admininfoVo">
+	select ad_id, ad_name, ad_nick, ad_email, ad_tell from admin_info
+	<where>
+		<if test="ad_name != null">ad_name like CONCAT('%', #{ad_name}, '%')</if>
+		<if test="ad_id != null">and ad_id like CONCAT ('%', #{ad_id}, '%')</if>
+		</where>
+		order by ad_no LIMIT #{paging.startViewNum}, #{paging.viewLength}
+	</select>
+	
+	<select id="selectAdminCount" resultType="int">
+		select count(*) from admin_info
+	</select>
+</mapper>

@@ -39,11 +39,11 @@ public class SignController {
 	}
 	
 	@PostMapping("/login")
-	public Integer selectSign(@RequestBody UserInfoVO userVo, HttpServletRequest req) {
+	public Integer selectSign(@RequestBody UserInfoVO userVo, HttpSession session) {
 		userVo = signService.selectSign(userVo);
 		if(userVo.getUi_no() != null) {
-			req.setAttribute("id", userVo.getUi_id());
-			req.setAttribute("no", userVo.getUi_no());
+			session.setAttribute("id", userVo.getUi_id());
+			session.setAttribute("no", userVo.getUi_no());
 			return 1;
 		}
 		return 0;

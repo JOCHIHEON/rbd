@@ -19,7 +19,8 @@ public class Paging {
 	private Integer clickBlock;
 	
 	public void setPaging(Integer clickBlock,Integer totalData) {
-		this.clickBlock=clickBlock;
+		this.clickBlock = clickBlock;
+		this.totalData = totalData;
 		if(clickBlock==0) {
 			clickBlock = 1;
 		}
@@ -31,9 +32,8 @@ public class Paging {
 		if(totalView<=endBlock) {
 			endBlock = totalView;
 		}
-		
-		
-		startViewNum = (clickBlock - 1) * viewLength + 1;
+				
+		startViewNum = (clickBlock - 1) * viewLength + 1 - 1; //mysql limit 0부터 시작
 		endViewNum = clickBlock * viewLength;
 	}
 }

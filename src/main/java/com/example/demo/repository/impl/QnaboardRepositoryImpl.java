@@ -47,4 +47,10 @@ public class QnaboardRepositoryImpl implements QnaboardRepository{
 		return ss.delete("com.example.demo.QNABOARD.deleteQnA", qnaVo);
 	}
 
+	@Override
+	public Integer selectQnACount() {
+		// TODO Auto-generated method stub
+		return ss.selectOne("com.example.demo.QNABOARD.selectQnACount");
+	}
+
 }

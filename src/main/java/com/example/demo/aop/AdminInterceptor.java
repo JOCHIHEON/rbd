@@ -19,8 +19,9 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 		// TODO Auto-generated method stub
 		log.debug("admin session check before");
 		HttpSession session = request.getSession();
-		if(session == null || session.getAttribute("manager") == null) {
-			throw new Exception("nonA");
+		String manager = (String)session.getAttribute("manager");
+		if(session == null ||  null == manager) {
+			throw new Exception("None");
 		}
 		return super.preHandle(request, response, handler);
 	}

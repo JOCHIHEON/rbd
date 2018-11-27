@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 
+import com.example.demo.collection.Paging;
+
 import lombok.Data;
 
 @Data
@@ -16,4 +18,5 @@ public class QnaboardVO {
 	private String qna_credat;
 	private String qna_moddate;
 	private List<QnacomentVO> qnacoments;
+	private Paging paging;
 }

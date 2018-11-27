@@ -42,6 +42,6 @@
 		<if test="ui_nick != null">and ui_nick like CONCAT ('%', #{ui_nick}, '%')</if>
 		<if test="ui_support != null">and ui_support = #{ui_support} </if>
 		</where>
-		order by ui_no
+		order by ui_no desc LIMIT #{paging.startViewNum}, #{paging.viewLength} 
 	</select>
 </mapper>

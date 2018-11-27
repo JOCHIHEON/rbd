@@ -21,9 +21,13 @@
 		<where>
 			<if test="ui_no != null">ui_no = #{ui_no}</if>
 		</where>
-		order by ui_no
+		order by qna_no desc LIMIT #{paging.startViewNum}, #{paging.viewLength}
 	</select>
 	<delete id="deleteQnA" parameterType="qnaboardVO">
 		delete from qnaboard where ui_no = #{ui_no} and qna_no = #{qna_no}
 	</delete>
+	
+	<select id="selectQnACount" resultType="int">
+		select count(*) from qnaboard
+	</select>
 </mapper>

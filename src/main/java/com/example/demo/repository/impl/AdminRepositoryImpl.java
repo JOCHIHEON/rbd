@@ -20,37 +20,43 @@ public class AdminRepositoryImpl implements AdminRepository {
 	@Override
 	public Integer insertAdmin(AdminInfoVO AdminVo) {
 		// TODO Auto-generated method stub
-		return null;
+		return ss.insert("com.example.demo.admininfo.admininfoInsert",AdminVo);
 	}
 
 	@Override
 	public Integer updateAdmin(AdminInfoVO AdminVo) {
 		// TODO Auto-generated method stub
-		return null;
+		return ss.update("com.example.demo.admininfo.admininfoUpdate", AdminVo);
 	}
 
 	@Override
 	public Integer findId(String ad_id) {
 		// TODO Auto-generated method stub
-		return null;
+		return ss.selectOne("com.example.demo.admininfo.admininfoIDCheck", ad_id);
 	}
 
 	@Override
 	public AdminInfoVO selectAdmin(AdminInfoVO AdminVo) {
 		// TODO Auto-generated method stub
-		return null;
-	}
+		return ss.selectOne("com.example.demo.admininfo.admininfoSelect", AdminVo);
+	}//login
 
 	@Override
 	public AdminInfoVO selectAdminView(Integer ad_no) {
 		// TODO Auto-generated method stub
-		return null;
-	}
+		return ss.selectOne("com.example.demo.admininfo.admininfoView", ad_no);
+	}//view page
 
 	@Override
 	public List<AdminInfoVO> selectAdminListView(AdminInfoVO AdminVo) {
 		// TODO Auto-generated method stub
-		return null;
+		return ss.selectList("com.example.demo.admininfo.admininfoList", AdminVo);
+	}
+
+	@Override
+	public Integer selectAdminCount() {
+		// TODO Auto-generated method stub
+		return ss.selectOne("com.example.demo.admininfo.selectAdminCount");
 	}
 
 }

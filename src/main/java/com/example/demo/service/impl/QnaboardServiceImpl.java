@@ -9,6 +9,10 @@ import com.example.demo.repository.QnaboardRepository;
 import com.example.demo.service.QnaboardService;
 import com.example.demo.vo.QnaboardVO;
 
+import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class QnaboardServiceImpl implements QnaboardService{
 		
@@ -35,6 +39,8 @@ public class QnaboardServiceImpl implements QnaboardService{
 	@Override
 	public List<QnaboardVO> selectListQnA(QnaboardVO qnaVo) {
 		// TODO Auto-generated method stub
+		qnaVo.getPaging().setPaging(qnaVo.getPaging().getClickBlock(), qnaRepo.selectQnACount());
+		log.debug(qnaVo.getPaging().toString());
 		return qnaRepo.selectListQnA(qnaVo);
 	}
 

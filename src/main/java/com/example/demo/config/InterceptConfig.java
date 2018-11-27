@@ -18,6 +18,7 @@ public class InterceptConfig implements WebMvcConfigurer, WebMvcRegistrations{
 	public void addInterceptors(InterceptorRegistry registry) {
 		// TODO Auto-generated method stub
 		//WebMvcConfigurer.super.addInterceptors(registry);
-		registry.addInterceptor(adminInterceptor).addPathPatterns("/admin").excludePathPatterns(""); //pattern 매핑, pattern 제외
+		registry.addInterceptor(adminInterceptor).addPathPatterns("/admin").addPathPatterns("/admin/**")
+		.addPathPatterns("/qnareply").excludePathPatterns(""); //pattern 매핑, pattern 제외
 	}
 }

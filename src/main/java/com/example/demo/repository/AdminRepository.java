@@ -16,4 +16,6 @@ public interface AdminRepository {
 	public AdminInfoVO selectAdminView(Integer ad_no); //개인 뷰
 	
 	public List<AdminInfoVO> selectAdminListView(AdminInfoVO AdminVo); //관리자 리스트
+	
+	public Integer selectAdminCount();
 }
