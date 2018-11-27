@@ -21,7 +21,6 @@ import com.example.demo.vo.UserInfoVO;
 
 @RestController
 public class AdminController {
-	//roll
 	@Autowired
 	private AdminService adminService;
 	
