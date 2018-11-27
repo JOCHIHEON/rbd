@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.collection.Paging;
+import com.example.demo.collection.PassEncription;
 import com.example.demo.service.AdminService;
 import com.example.demo.vo.AdminInfoVO;
-import com.example.demo.vo.UserInfoVO;
 
 @RestController
 public class AdminController {
@@ -26,11 +25,15 @@ public class AdminController {
 	
 	@PostMapping("/admin")
 	public Integer adminRegister(@RequestBody AdminInfoVO adminVo) {
+		adminVo.setAd_pwd(PassEncription.encPwd(adminVo.getAd_pwd()));
 		return adminService.insertAdmin(adminVo);
 	}
 	
 	@PutMapping("/admin")
 	public Integer adminUpdate(@RequestBody AdminInfoVO adminVo) {
+		if(adminVo.getAd_pwd()!=null  || !adminVo.getAd_pwd().equals("")) {
+			adminVo.setAd_pwd(PassEncription.encPwd(adminVo.getAd_pwd()));
+		}
 		return adminService.updateAdmin(adminVo);
 	}
 	
@@ -41,6 +44,7 @@ public class AdminController {
 	
 	@PostMapping("/admini")
 	public Integer selectSign(@RequestBody AdminInfoVO adminVo, HttpSession session) {
+		adminVo.setAd_pwd(PassEncription.encPwd(adminVo.getAd_pwd()));
 		adminVo = adminService.selectAdmin(adminVo);
 		if(adminVo.getAd_no() != null) {
 			session.setAttribute("manager", adminVo.getAd_id());

@@ -15,6 +15,9 @@ public class QnacomentServiceImpl implements QnacomentService{
 	@Override
 	public Integer insertQnacoment(QnacomentVO qnacomentVo) {
 		// TODO Auto-generated method stub
+		if(qnacomentVo.getUi_no() == null && qnacomentVo.getAd_no() == null) {
+			return -1;
+		} //둘 다 null이면 등록한 사람이 없으는거니까 리턴
 		return qcomentRepo.insertQnacoment(qnacomentVo);
 	}
 

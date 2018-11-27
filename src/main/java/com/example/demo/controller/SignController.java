@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.collection.PassEncription;
 import com.example.demo.service.SignService;
 import com.example.demo.vo.UserInfoVO;
 
@@ -25,11 +26,15 @@ public class SignController {
 	
 	@PostMapping("/sign")
 	public Integer insertSign(@RequestBody UserInfoVO userVo) {
+		userVo.setUi_pwd(PassEncription.encPwd(userVo.getUi_pwd()));
 		return signService.insertSign(userVo);
 	}
 	
 	@PutMapping("/user")
 	public Integer updateSign(@RequestBody UserInfoVO userVo){
+		if(userVo.getUi_pwd() != null || !userVo.getUi_pwd().equals("")) {
+			userVo.setUi_pwd(PassEncription.encPwd(userVo.getUi_pwd()));
+		}
 		return signService.updateSign(userVo);
 	}
 	
@@ -40,6 +45,7 @@ public class SignController {
 	
 	@PostMapping("/login")
 	public Integer selectSign(@RequestBody UserInfoVO userVo, HttpSession session) {
+		userVo.setUi_pwd(PassEncription.encPwd(userVo.getUi_pwd()));
 		userVo = signService.selectSign(userVo);
 		if(userVo.getUi_no() != null) {
 			session.setAttribute("id", userVo.getUi_id());

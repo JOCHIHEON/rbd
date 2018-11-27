@@ -4,16 +4,37 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.QNACOMENT">
 	<insert id="insertQcoment" parameterType="qnacomentVO">
-		insert into qnacoment(qnaco_content, qna_credat, qna_moddate, ad_no, qna_no) values(#{qnaco_content}, NOW(), NOW(), #{ad_no}, #{qna_no})
+		insert into qnacoment(qnaco_content, qna_credat, qna_moddate, 
+		<if test="ad_no != null">ad_no, </if>
+		<if test="ui_no != null">ui_no, </if>
+		 qna_no) values(#{qnaco_content}, NOW(), NOW(), 
+		 <if test="ad_no != null">#{ad_no},</if>
+		 <if test="ui_no != null">#{ui_no},</if>
+		  #{qna_no})
 	</insert>
 	<update id="updateQcoment" parameterType="qnacomentVO">
 		update qnacoment
 		<set>
 			qna_content = #{qna_content}, qna_moddate=now(), ad_no = #{ad_no}
 		</set>
-		where qna_no = #{qna_no} and qnaco_no = #{qnaco_no}
+		<where>
+			<if test="ui_no != null">
+				qnaco_no = #{qnaco_no} and qna_no = #{qna_no} and ui_no  #{ui_no}
+			</if>
+			<if test="ad_no != null">
+				qnaco_no = #{qnaco_no} and qna_no = #{qna_no}
+			</if>
+		</where>
 	</update>
 	<delete id="deleteQcoment" parameterType="qnacomentVO">
-		delete from qnacoment where qnaco_no = #{qnaco_no} and qna_no = #{qna_no}
+		delete from qnacoment
+		<where>
+			<if test="ui_no != null">
+				qnaco_no = #{qnaco_no} and qna_no = #{qna_no} and ui_no  #{ui_no}
+			</if>
+			<if test="ad_no != null">
+				qnaco_no = #{qnaco_no} and qna_no = #{qna_no}
+			</if>
+		</where>
 	</delete>
 </mapper>
