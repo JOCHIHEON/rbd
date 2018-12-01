@@ -14,7 +14,7 @@ import com.example.demo.vo.AdminInfoVO;
 public class AdminRepositoryImpl implements AdminRepository {
 	
 	@Autowired
-	@Qualifier("sqlSessionTemplate")
+	//@Qualifier("sqlSessionTemplate")
 	private SqlSession ss;
 
 	@Override
