@@ -7,7 +7,7 @@ import com.example.demo.collection.Paging;
 import lombok.Data;
 
 @Data
-@Alias("teamrecordVo")
+@Alias("teamDeRecordVo")
 public class TeamDetailRecordVO {
 	
 	private Integer team_code;
