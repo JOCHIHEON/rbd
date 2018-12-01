@@ -41,7 +41,7 @@ public class TeamDetailRecordController {
 		return teamDeService.teamDeRecordView(team_code);
 	}
 	
-	@GetMapping("/datail")
+	@GetMapping("/detail")
 	public List<TeamDetailRecordVO> teamDeRecordListView(@ModelAttribute TeamDetailRecordVO teamDeRecordVo){
 		return teamDeService.teamDeRecordListView(teamDeRecordVo);
 	}

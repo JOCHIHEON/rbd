@@ -8,9 +8,9 @@
 		<if test="teamde_pts != null">, teamde_pts</if>
 		<if test="teamde_lostpts != null">, teamde_lostpts</if>
 		<if test="teamde_assist != null">, teamde_assist</if>
-		<if test="teamde_red != null">, teamde_red</if>
+		<if test="teamde_reb != null">, teamde_reb</if>
 		<if test="teamde_stl != null">, teamde_stl</if>
-		<if test="teamde_blk != null">,t eamde_blk</if>
+		<if test="teamde_blk != null">,teamde_blk</if>
 		<if test="teamde_fg != null">, teamde_fg</if>
 		<if test="teamde_threept != null">, teamde_threept</if>
 		<if test="teamde_ft != null">, teamde_ft</if>
@@ -23,7 +23,7 @@
 		<if test="teamde_pts != null">, #{teamde_pts}</if>
 		<if test="teamde_lostpts != null">, #{teamde_lostpts}</if>
 		<if test="teamde_assist != null">, #{teamde_assist}</if>
-		<if test="teamde_red != null">, #{teamde_red}</if>
+		<if test="teamde_reb != null">, #{teamde_reb}</if>
 		<if test="teamde_stl != null">, #{teamde_stl}</if>
 		<if test="teamde_blk != null">, #{teamde_blk}</if>
 		<if test="teamde_fg != null">, #{teamde_fg}</if>
@@ -41,7 +41,7 @@
 			<if test="teamde_pts != null">teamde_pts = #{teamde_pts}</if>
 			<if test="teamde_lostpts != null">, teamde_lostpts = #{teamde_lostpts}</if>
 			<if test="teamde_assist != null">, teamde_assist = #{teamde_assist}</if>
-			<if test="teamde_red != null">, teamde_red = #{teamde_red}</if>
+			<if test="teamde_reb != null">, teamde_reb = #{teamde_reb}</if>
 			<if test="teamde_stl != null">, teamde_stl = #{teamde_stl}</if>
 			<if test="teamde_blk != null">, teamde_blk = #{teamde_blk}</if>
 			<if test="teamde_fg != null">, teamde_fg = #{teamde_fg}</if>
@@ -59,7 +59,7 @@
 		where team_code = #{team_code}
 	</delete>
 	
-	<select id="teamDeRecordView" parameterType="int">
+	<select id="teamDeRecordView" parameterType="int"  resultType="teamDeRecordVo">
 		select * from team_detailrecord where team_code = #{team_code}
 	</select>
 	<select id="teamDeRecordListView" parameterType="teamDeRecordVo" resultType="teamDeRecordVo">

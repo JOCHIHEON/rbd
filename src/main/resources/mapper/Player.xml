@@ -5,10 +5,10 @@
 <mapper namespace="com.example.demo.PLAYER">
 	<insert id="insertPlayer" parameterType="playerVo">
 		insert into
-		player_info(team_code, player_name, player_birth, player.height,
+		player_info(team_code, player_name, player_birth, player_height,
 		player_position, player_background,player_number)
 		values(#{team_code},
-		#{player_name}, #{player_birth}, #{player.height}, #{player_position},
+		#{player_name}, #{player_birth}, #{player_height}, #{player_position},
 		#{player_background},#{player_number})
 	</insert>
 	<update id="updatePlayer" parameterType="playerVo">
@@ -27,7 +27,7 @@
 		delete from player_info where player_no = #{player_no}
 	</delete>
 	
-	<select id="playerView" parameterType="int">
+	<select id="playerView" parameterType="int" resultType="playerVo">
 		select * from player_info where player_no = #{player_no}
 	</select>
 	<select id="playerListView" resultType="playerVo" parameterType="playerVo">

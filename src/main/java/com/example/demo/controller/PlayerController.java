@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.service.PlayerService;
@@ -21,17 +22,17 @@ public class PlayerController {
 	private PlayerService playerService;
 	
 	@PostMapping("/player")
-	public Integer insertPlayer(PlayerVO playerVo) {
+	public Integer insertPlayer(@RequestBody PlayerVO playerVo) {
 		return playerService.insertPlayer(playerVo);
 	}
 	
 	@PutMapping("/player")
-	public Integer updatePlayer(PlayerVO playerVo) {
+	public Integer updatePlayer(@RequestBody PlayerVO playerVo) {
 		return playerService.updatePlayer(playerVo);
 	}
 	
 	@DeleteMapping("/player")
-	public Integer deletePlayer(PlayerVO playerVo) {
+	public Integer deletePlayer(@RequestBody PlayerVO playerVo) {
 		return playerService.deletePlayer(playerVo);
 	}
 	

@@ -26,7 +26,7 @@ public class TeamDetailRecordRepositoryImpl implements TeamDetailRecordRepositor
 	@Override
 	public Integer updateTeamDeRecord(TeamDetailRecordVO teamDeRecordVo) {
 		// TODO Auto-generated method stub
-		return ss.update("com.example.demo.TEAMDETAILupdateTeamDeRecord", teamDeRecordVo);
+		return ss.update("com.example.demo.TEAMDETAIL.updateTeamDeRecord", teamDeRecordVo);
 	}
 
 	@Override

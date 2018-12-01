@@ -43,6 +43,6 @@ public class MatchController {
 	
 	@GetMapping("/match")
 	public List<MatchInfoVO> matchListView(@ModelAttribute MatchInfoVO matchVo){
-		return matchListView(matchVo);
+		return matchService.matchListView(matchVo);
 	}
 }

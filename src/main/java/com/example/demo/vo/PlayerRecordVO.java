@@ -15,13 +15,14 @@ public class PlayerRecordVO {
 	private String player_min; //출장시간 time
 	private double player_pts;
 	private double player_ast;
-	private double player_red;
-	private double plalyer_stl;
+	private double player_reb;
+	private double player_stl;
 	private double player_blk;
 	private double player_fg;
 	private double player_ft;
 	private double player_threept;
 	private double player_fgp;
+	private double player_ftp;
 	private double player_threeptp;
 	private double player_to;
 	
