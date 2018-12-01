@@ -7,7 +7,7 @@ import com.example.demo.collection.Paging;
 import lombok.Data;
 
 @Data
-@Alias("macthVo")
+@Alias("matchVo")
 public class MatchInfoVO {
 
 	private Integer match_no;
