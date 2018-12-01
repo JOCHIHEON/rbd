@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.collection.Paging;
-import com.example.demo.collection.PassEncription;
+import com.example.demo.collection.PassEncryption;
 import com.example.demo.service.AdminService;
 import com.example.demo.vo.AdminInfoVO;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 public class AdminController {
 	@Autowired
@@ -25,14 +28,14 @@ public class AdminController {
 	
 	@PostMapping("/admin")
 	public Integer adminRegister(@RequestBody AdminInfoVO adminVo) {
-		adminVo.setAd_pwd(PassEncription.encPwd(adminVo.getAd_pwd()));
+		adminVo.setAd_pwd(PassEncryption.encPwd(adminVo.getAd_pwd()));
 		return adminService.insertAdmin(adminVo);
 	}
 	
 	@PutMapping("/admin")
 	public Integer adminUpdate(@RequestBody AdminInfoVO adminVo) {
 		if(adminVo.getAd_pwd()!=null  || !adminVo.getAd_pwd().equals("")) {
-			adminVo.setAd_pwd(PassEncription.encPwd(adminVo.getAd_pwd()));
+			adminVo.setAd_pwd(PassEncryption.encPwd(adminVo.getAd_pwd()));
 		}
 		return adminService.updateAdmin(adminVo);
 	}
@@ -44,8 +47,9 @@ public class AdminController {
 	
 	@PostMapping("/admini")
 	public Integer selectSign(@RequestBody AdminInfoVO adminVo, HttpSession session) {
-		adminVo.setAd_pwd(PassEncription.encPwd(adminVo.getAd_pwd()));
+		//adminVo.setAd_pwd(PassEncryption.encPwd(adminVo.getAd_pwd()));
 		adminVo = adminService.selectAdmin(adminVo);
+		log.debug(adminVo.toString());
 		if(adminVo.getAd_no() != null) {
 			session.setAttribute("manager", adminVo.getAd_id());
 			session.setAttribute("no", adminVo.getAd_no());

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.FREECOMENT">
+	<insert id="insertFreeComent" parameterType="freeComentVo">
+		insert into free_coment(freco_content,freco_credat, freco_moddat, fre_no, ui_no)
+		values(#{freco_content}, now(), now(), #{fre_no}, #{ui_no})
+	</insert>
+	<update id="updateFreeComent" parameterType="freeComentVo">
+		update free_coment
+		<set>
+			freco_content = #{freco_content},
+			freco_moddat = now()
+		</set>
+		where fre_no = #{fre_no} and ui_no = #{ui_no} and freco_no = #{freco_no}
+	</update>
+	<delete id="deleteFreeComent" parameterType="freeComentVo">
+		delete from free_coment where fre_no = #{fre_no} and ui_no = #{ui_no}  
+	</delete>
+	
+	<select id = "freeComentList" parameterType="int" resultType="FreeComentVO">
+		select freco_content, freco_moddat,fre_no,ui_no,freco_like, freco_unlike from free_coment where fre_no = #{fre_no}
+		<!-- select f.freco_content, f.freco_moddat, f.fre_no, f.ui_no, lik.freco_like, unlik.freco_unlike
+		from free_coment f, 
+		(select count(*) freco_like from like_unlike where like_on = 1 and like_no = f.freco_no) lik,
+		(select count(*) freco_unlike from like_unlike where like_on = 2 and like_no = f.freco_no) unlik		
+		where fre_no = #{fre_no}; -->
+	</select>
+
+</mapper>

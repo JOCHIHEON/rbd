@@ -48,6 +48,7 @@ public class SignServiceImpl implements SignService{
 	@Override
 	public List<UserInfoVO> selectListView(UserInfoVO userVo) {
 		// TODO Auto-generated method stub
+		userVo.getPaging().setPaging(userVo.getPaging().getClickBlock(), signRepo.countUser());
 		return signRepo.selectListView(userVo);
 	}
 

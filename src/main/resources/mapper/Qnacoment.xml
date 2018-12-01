@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.QNACOMENT">
 	<insert id="insertQcoment" parameterType="qnacomentVO">
-		insert into qnacoment(qnaco_content, qna_credat, qna_moddate, 
+		insert into qnacoment(qnaco_content, qnaco_credat, qnaco_moddate, 
 		<if test="ad_no != null">ad_no, </if>
 		<if test="ui_no != null">ui_no, </if>
 		 qna_no) values(#{qnaco_content}, NOW(), NOW(), 
@@ -15,11 +15,12 @@
 	<update id="updateQcoment" parameterType="qnacomentVO">
 		update qnacoment
 		<set>
-			qna_content = #{qna_content}, qna_moddate=now(), ad_no = #{ad_no}
+			qnaco_content = #{qnaco_content}, qnaco_moddate=now()
+			<if test="ad_no != null">, ad_no = #{ad_no} </if>
 		</set>
 		<where>
 			<if test="ui_no != null">
-				qnaco_no = #{qnaco_no} and qna_no = #{qna_no} and ui_no  #{ui_no}
+				qnaco_no = #{qnaco_no} and qna_no = #{qna_no} and ui_no = #{ui_no}
 			</if>
 			<if test="ad_no != null">
 				qnaco_no = #{qnaco_no} and qna_no = #{qna_no}
@@ -30,11 +31,17 @@
 		delete from qnacoment
 		<where>
 			<if test="ui_no != null">
-				qnaco_no = #{qnaco_no} and qna_no = #{qna_no} and ui_no  #{ui_no}
+				qnaco_no = #{qnaco_no} and qna_no = #{qna_no} and ui_no = #{ui_no}
 			</if>
 			<if test="ad_no != null">
-				qnaco_no = #{qnaco_no} and qna_no = #{qna_no}
+				qnaco_no = #{qnaco_no}
 			</if>
 		</where>
 	</delete>
+	<select id="qnaComentList" parameterType="int" resultType="qnacomentVO">
+		select * from qnacoment
+		<where>
+			qna_no = #{qna_no}
+		</where>
+	</select>
 </mapper>

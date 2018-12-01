@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.TEAM">
+	<insert id="insertTeam" parameterType="teaminfoVo">
+		inset into team_info(team_code,team_name,team_owner,team_leader,team_director,team_coach,team_address,team_company)
+		values(#{team_code},#{team_name},#{team_owner},#{team_leader},#{team_director},#{team_coach},#{team_address},#{team_company})
+	</insert>
+	<update id="updateTeam" parameterType="teaminfoVo">
+		update team_info
+		<set>
+			<if test="team_name != null">team_name = #{team_name}</if>
+			<if test="team_owner != null">team_owner = #{team_owner}</if>
+			<if test="team_leader != null">team_leader = #{team_leader}</if>
+			<if test="team_director != null">team_director = #{team_director}</if>
+			<if test="team_coach != null">team_coach = #{team_coach}</if>
+			<if test="team_address != null">team_address = #{team_address}</if>
+			<if test="team_company != null">team_company = #{team_company}</if>
+		</set>
+		where team_code = #{team_code};
+	</update>
+	<delete id="deleteTeam" parameterType="int">
+		delete from team_info where team_code = #{team_code}
+	</delete>
+	<select id="teamView" parameterType="int">
+		select * from team_info where team_code = #{team_code}
+	</select>
+	<select id="teamListView" parameterType="teaminfoVo">
+		select team_code, team_name, team_director, team_coach from team_info
+	</select>
+</mapper>

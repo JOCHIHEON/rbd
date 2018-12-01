@@ -53,4 +53,10 @@ public class SignRepositoryImpl implements SignRepository {
 		return ss.selectList("com.example.demo.USERINFO.userinfoList",userVo);
 	}
 
+	@Override
+	public Integer countUser() {
+		// TODO Auto-generated method stub
+		return ss.selectOne("com.example.demo.USERINFO.countUser");
+	}
+
 }

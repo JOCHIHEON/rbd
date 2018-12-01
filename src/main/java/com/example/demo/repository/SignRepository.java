@@ -17,4 +17,6 @@ public interface SignRepository {
 	public UserInfoVO selectView(Integer ui_no); //개인 뷰
 	
 	public List<UserInfoVO> selectListView(UserInfoVO userVo); //회원 리스트
+	
+	public Integer countUser();
 }

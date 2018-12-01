@@ -9,8 +9,6 @@ import com.example.demo.repository.AdminRepository;
 import com.example.demo.service.AdminService;
 import com.example.demo.vo.AdminInfoVO;
 
-import lombok.extern.slf4j.Slf4j;
-@Slf4j
 @Service
 public class AdminServiceImpl implements AdminService{
 	

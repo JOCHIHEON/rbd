@@ -18,8 +18,10 @@ public class SessionAdvice extends HandlerInterceptorAdapter{
 		// TODO Auto-generated method stub
 		log.debug("session check before");
 		HttpSession session = request.getSession();
-		String manager = (String)session.getAttribute("id");
-		if(session == null ||  null == manager) {
+		log.debug("id =>", session.getAttribute("id") );
+		log.debug("no =>", session.getAttribute("no") );
+		Integer uNo = session.getAttribute("no")==null?0:(int)session.getAttribute("no");
+		if(session == null || uNo == 0) {
 			throw new Exception("None Member");
 		}
 		return super.preHandle(request, response, handler);

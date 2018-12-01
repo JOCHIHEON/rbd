@@ -1,6 +1,14 @@
 package com.example.demo.service;
 
+import java.util.List;
+
+import com.example.demo.vo.FreeBoardVO;
+
 public interface FreeBoardService {
 
-	
+	public Integer insertFree(FreeBoardVO freeVo);
+	public Integer updateFree(FreeBoardVO freeVo);
+	public Integer deleteFree(FreeBoardVO freeVo); //fre_no를 조회하고 그 row의 ui_no가 같으면 del가능하게
+	public FreeBoardVO freeView(Integer fre_no);
+	public List<FreeBoardVO> freeListView(FreeBoardVO freeVo);
 }

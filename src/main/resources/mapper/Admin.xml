@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.admininfo">
+<mapper namespace="com.example.demo.ADMININFO">
 	<insert id="admininfoInsert" parameterType="admininfoVo">
 		insert into
 		admin_info(ad_id, ad_name, ad_pwd, ad_nick, ad_email, ad_tell)

@@ -10,23 +10,22 @@ import com.example.demo.aop.AdminInterceptor;
 import com.example.demo.aop.SessionAdvice;
 
 @Configuration
-public class InterceptConfig implements WebMvcConfigurer, WebMvcRegistrations{
-	
+public class InterceptConfig implements WebMvcConfigurer, WebMvcRegistrations {
+
 	@Autowired
 	private AdminInterceptor adminInterceptor;
 	@Autowired
 	private SessionAdvice sessionAdvice;
-	
+
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		// TODO Auto-generated method stub
-		//WebMvcConfigurer.super.addInterceptors(registry);
+		// WebMvcConfigurer.super.addInterceptors(registry);
 		registry.addInterceptor(adminInterceptor).addPathPatterns("/admin").addPathPatterns("/admin/**")
-		.addPathPatterns("/qnareply").excludePathPatterns("/**"); //pattern 매핑, pattern 제외
-
-		registry.addInterceptor(sessionAdvice).addPathPatterns("/**").excludePathPatterns("/all")
-		.excludePathPatterns("/login").excludePathPatterns("/sign/**").excludePathPatterns("/sign");
+				.excludePathPatterns("/**"); // pattern 매핑, pattern 제외
+		registry.addInterceptor(sessionAdvice).addPathPatterns("/**").excludePathPatterns("/all/**")
+				.excludePathPatterns("/login").excludePathPatterns("/sign/**").excludePathPatterns("/sign")
+				.excludePathPatterns("/admini").excludePathPatterns("/admin").excludePathPatterns("/admin/**");
 	}
-	
-	
+
 }

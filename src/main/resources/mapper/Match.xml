@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.MATCH">
+	<insert id="insertMatch" parameterType="matchVo">
+		insert into match_info(match_day, match_home, match_away, match_hscore, match_ascore, match_time, match_stadium)
+		values(#{match_day}, #{match_home}, #{match_away}, #{match_hscore}, #{match_ascore}, #{match_time}, #{match_stadium})
+	</insert>
+	<update id="updateMatch" parameterType="matchVo">
+		update match_info
+		<set>
+			<if test="match_day != null">match_day = #{match_day}</if>
+			<if test="match_home != null">, match_home = #{match_home}</if>
+			<if test="match_away != null">, match_away = #{match_away}</if>
+			<if test="match_hscore != null">, match_hscore = #{match_hscore}</if>
+			<if test="match_ascore != null">, match_ascore = #{match_ascore}</if>
+			<if test="match_time != null">,match_time = #{match_time}</if>
+			<if test="match_stadium != null">, match_stadium = #{match_stadium}</if>
+		</set>
+		where match_no = #{match_no}
+	</update>
+	<delete id="deleteMatch" parameterType="matchVo">
+		delete from match_info where match_no = #{match_no}
+	</delete>
+	<select id="matchView" parameterType="int">
+		select * from match_info where match_no = #{match_no}
+	</select>
+	<select id="matchListView" parameterType="matchVo" resultType="matchVo">
+		select * from match_info
+	</select>
+</mapper>

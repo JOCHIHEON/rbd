@@ -44,4 +44,8 @@
 		</where>
 		order by ui_no desc LIMIT #{paging.startViewNum}, #{paging.viewLength} 
 	</select>
+	
+	<select id="countUser" resultType="int">
+		select count(*) from user_info
+	</select>
 </mapper>

@@ -2,11 +2,11 @@ package com.example.demo.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -14,10 +14,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.collection.PassEncription;
+import com.example.demo.collection.Paging;
+import com.example.demo.collection.PassEncryption;
 import com.example.demo.service.SignService;
 import com.example.demo.vo.UserInfoVO;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController // <- controller + responsebody
 public class SignController {
 	
@@ -26,14 +30,14 @@ public class SignController {
 	
 	@PostMapping("/sign")
 	public Integer insertSign(@RequestBody UserInfoVO userVo) {
-		userVo.setUi_pwd(PassEncription.encPwd(userVo.getUi_pwd()));
+		userVo.setUi_pwd(PassEncryption.encPwd(userVo.getUi_pwd()));
 		return signService.insertSign(userVo);
 	}
 	
 	@PutMapping("/user")
 	public Integer updateSign(@RequestBody UserInfoVO userVo){
 		if(userVo.getUi_pwd() != null || !userVo.getUi_pwd().equals("")) {
-			userVo.setUi_pwd(PassEncription.encPwd(userVo.getUi_pwd()));
+			userVo.setUi_pwd(PassEncryption.encPwd(userVo.getUi_pwd()));
 		}
 		return signService.updateSign(userVo);
 	}
@@ -45,11 +49,14 @@ public class SignController {
 	
 	@PostMapping("/login")
 	public Integer selectSign(@RequestBody UserInfoVO userVo, HttpSession session) {
-		userVo.setUi_pwd(PassEncription.encPwd(userVo.getUi_pwd()));
+		userVo.setUi_pwd(PassEncryption.encPwd(userVo.getUi_pwd()));
 		userVo = signService.selectSign(userVo);
-		if(userVo.getUi_no() != null) {
+		if(userVo.getUi_no() != 0) {
 			session.setAttribute("id", userVo.getUi_id());
 			session.setAttribute("no", userVo.getUi_no());
+			log.debug("userVo =>{}",userVo.toString());
+			log.debug("session no => {}",session.getAttribute("no"));
+			log.debug("session =>{}", session.getAttribute("id"));
 			return 1;
 		}
 		return 0;
@@ -61,18 +68,17 @@ public class SignController {
 	}
 	
 	@GetMapping("/user")
-	public List<UserInfoVO> selectListView(@RequestParam(value="ui_name") String ui_name,@RequestParam(value="ui_nick") String ui_nick,@RequestParam(value="ui_support") Integer ui_support){
-		UserInfoVO userVo = new UserInfoVO();
-		userVo.setUi_name(ui_name);
-		userVo.setUi_nick(ui_nick);
-		userVo.setUi_support(ui_support);
+	public List<UserInfoVO> selectListView(@RequestParam(value="clickBlock") Integer clickBlock, @ModelAttribute UserInfoVO userVo){
+		userVo.setPaging(new Paging());
+		userVo.getPaging().setClickBlock(clickBlock);
 		return signService.selectListView(userVo);
 	}
 	
 	@GetMapping("/logout")
 	public Integer integer(HttpSession session) {
-		if(session.getAttribute("id")!=null) {
+		if(session.getAttribute("id")!=null || session.getAttribute("manager")!=null) {
 			session.removeAttribute("id");
+			session.removeAttribute("manager");
 			session.invalidate();
 			return 1;
 		}

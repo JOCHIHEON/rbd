@@ -1,5 +1,7 @@
 package com.example.demo.repository.impl;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -31,6 +33,12 @@ public class QnacomentRepositoryImpl implements QnacomentRepository{
 	public Integer deleteQnacoment(QnacomentVO qnacomentVo) {
 		// TODO Auto-generated method stub
 		return ss.delete("com.example.demo.QNACOMENT.deleteQcoment",qnacomentVo);
+	}
+
+	@Override
+	public List<QnacomentVO> qnaComentList(Integer qna_no) {
+		// TODO Auto-generated method stub
+		return ss.selectList("com.example.demo.QNACOMENT.qnaComentList", qna_no);
 	}
 
 }

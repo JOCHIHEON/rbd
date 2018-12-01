@@ -2,6 +2,8 @@ package com.example.demo.vo;
 
 import org.apache.ibatis.type.Alias;
 
+import com.example.demo.collection.Paging;
+
 import lombok.Data;
 
 @Data
@@ -14,4 +16,5 @@ public class QnacomentVO{
 	private String qnaco_content;
 	private String qnaco_credat;
 	private String qnaco_moddate;
+	private Paging paging;
 }

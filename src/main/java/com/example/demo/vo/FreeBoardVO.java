@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 
+import com.example.demo.collection.Paging;
+
 import lombok.Data;
 
 @Data
@@ -20,4 +22,5 @@ public class FreeBoardVO {
 	private Integer fre_like; //좋아요
 	private Integer fre_unlike; //싫어요
 	private List<FreeComentVO> freeComents;
+	private Paging paging;
 }
