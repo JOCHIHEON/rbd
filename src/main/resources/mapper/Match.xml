@@ -23,7 +23,7 @@
 	<delete id="deleteMatch" parameterType="matchVo">
 		delete from match_info where match_no = #{match_no}
 	</delete>
-	<select id="matchView" parameterType="int">
+	<select id="matchView" parameterType="int"  resultType="matchVo">
 		select * from match_info where match_no = #{match_no}
 	</select>
 	<select id="matchListView" parameterType="matchVo" resultType="matchVo">
