@@ -48,23 +48,7 @@ public class ExMariaConfig {
 
         return DataSourceBuilder.create().build();
     }
-	@Bean
-	public SqlSessionFactory sqlSessionFactory()
-	throws Exception{
-		SqlSessionFactoryBean ssfb = new SqlSessionFactoryBean();
-		ssfb.setDataSource(getDataSource());
-		ssfb.setTypeAliasesPackage("com.example.demo.vo");
-		Resource[] res = 
-				new PathMatchingResourcePatternResolver()
-				.getResources("classpath:mapper/*.xml");
-		ssfb.setMapperLocations(res);
-		return ssfb.getObject();
-	}
 	
-	@Bean
-	public SqlSession sqlSession() throws Exception {
-        return new SqlSessionTemplate(sqlSessionFactory());
-	}
 	@Bean
 	public DataSourceTransactionManager txManager() {
 		return new DataSourceTransactionManager(getDataSource());
