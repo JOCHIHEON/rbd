@@ -20,13 +20,13 @@ import lombok.extern.slf4j.Slf4j;
 public class SessionAdvice extends HandlerInterceptorAdapter{
 	@Autowired 
 	private SignService signService;
-	@Value("${is.dev}")
+	@Value("${ex.is.dev}")
 	private boolean isDev;
 	
 	private void loginForDev(HttpSession session) {
 		UserInfoVO userVo= new UserInfoVO();
-		userVo.setUi_id("testid1");
-		userVo.setUi_pwd(PassEncryption.encPwd("1234"));
+		userVo.setUi_id("test1");
+		userVo.setUi_pwd(PassEncryption.encPwd("test1"));
 		userVo = signService.selectSign(userVo);
 		if(userVo.getUi_no() != 0) {
 			session.setAttribute("id", userVo.getUi_id());
@@ -44,7 +44,7 @@ public class SessionAdvice extends HandlerInterceptorAdapter{
 		HttpSession session = request.getSession();
 		log.debug("id =>", session.getAttribute("id") );
 		log.debug("no =>", session.getAttribute("no") );
-		if(isDev) {
+		if(isDev && session.getAttribute("no")==null) {
 			loginForDev(session);
 		}
 		Integer uNo = session.getAttribute("no")==null?0:(int)session.getAttribute("no");

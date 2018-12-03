@@ -48,7 +48,6 @@ public class ExMariaConfig {
 
         return DataSourceBuilder.create().build();
     }
-	
 	@Bean
 	public DataSourceTransactionManager txManager() {
 		return new DataSourceTransactionManager(getDataSource());
