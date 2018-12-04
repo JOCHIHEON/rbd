@@ -41,7 +41,7 @@ public class ExMariaConfig {
     private static final String AOP_POINTCUT_EXPRESSION = "execution(* com.example..*ServiceImpl.*(..))";
     @Autowired
     private DataSourceTransactionManager transactionManager;
-
+ 
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource.hikari")
     public DataSource getDataSource() {
