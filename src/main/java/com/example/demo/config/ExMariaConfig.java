@@ -76,7 +76,6 @@ public class ExMariaConfig {
 		txAdvice.setTransactionManager(transactionManager);
         return txAdvice;
     }
-
     @Bean
     public Advisor txAdviceAdvisor() {
         AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
