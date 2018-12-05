@@ -41,30 +41,13 @@ public class ExMariaConfig {
     private static final String AOP_POINTCUT_EXPRESSION = "execution(* com.example..*ServiceImpl.*(..))";
     @Autowired
     private DataSourceTransactionManager transactionManager;
-
+ 
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource.hikari")
     public DataSource getDataSource() {
 
         return DataSourceBuilder.create().build();
     }
-	@Bean
-	public SqlSessionFactory sqlSessionFactory()
-	throws Exception{
-		SqlSessionFactoryBean ssfb = new SqlSessionFactoryBean();
-		ssfb.setDataSource(getDataSource());
-		ssfb.setTypeAliasesPackage("com.example.demo.vo");
-		Resource[] res = 
-				new PathMatchingResourcePatternResolver()
-				.getResources("classpath:mapper/*.xml");
-		ssfb.setMapperLocations(res);
-		return ssfb.getObject();
-	}
-	
-	@Bean
-	public SqlSession sqlSession() throws Exception {
-        return new SqlSessionTemplate(sqlSessionFactory());
-	}
 	@Bean
 	public DataSourceTransactionManager txManager() {
 		return new DataSourceTransactionManager(getDataSource());
@@ -93,7 +76,6 @@ public class ExMariaConfig {
 		txAdvice.setTransactionManager(transactionManager);
         return txAdvice;
     }
-
     @Bean
     public Advisor txAdviceAdvisor() {
         AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();

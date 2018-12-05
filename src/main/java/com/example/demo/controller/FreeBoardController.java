@@ -18,7 +18,10 @@ import com.example.demo.service.FreeComentService;
 import com.example.demo.vo.FreeBoardVO;
 import com.example.demo.vo.FreeComentVO;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
+@Slf4j
 public class FreeBoardController {
 	
 	@Autowired
@@ -49,9 +52,9 @@ public class FreeBoardController {
 	}
 	
 	@GetMapping("/freeboard")
-	public List<FreeBoardVO> freeListView(FreeBoardVO freeVo, @RequestParam(value="clickBlock") Integer clickBlock){
+	public List<FreeBoardVO> freeListView(FreeBoardVO freeVo, @RequestParam(value="clickBlock",required=false) Integer clickBlock){
 		freeVo.setPaging(new Paging());
-		freeVo.getPaging().setClickBlock(clickBlock);
+		freeVo.getPaging().setClickBlock(clickBlock==null?0:clickBlock);
 		return freeboardService.freeListView(freeVo);
 	}
 	
