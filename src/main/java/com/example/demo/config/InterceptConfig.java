@@ -23,9 +23,9 @@ public class InterceptConfig implements WebMvcConfigurer, WebMvcRegistrations {
 		// WebMvcConfigurer.super.addInterceptors(registry);
 		registry.addInterceptor(adminInterceptor).addPathPatterns("/admin").addPathPatterns("/admin/**")
 				.excludePathPatterns("/**"); // pattern 매핑, pattern 제외
-		registry.addInterceptor(sessionAdvice).addPathPatterns("/**").excludePathPatterns("/all/**")
+	/*	registry.addInterceptor(sessionAdvice).addPathPatterns("/**").excludePathPatterns("/all/**")
 				.excludePathPatterns("/login").excludePathPatterns("/sign/**").excludePathPatterns("/sign")
 				.excludePathPatterns("/admini").excludePathPatterns("/admin").excludePathPatterns("/admin/**");
-	}
+*/	}
 
 }
