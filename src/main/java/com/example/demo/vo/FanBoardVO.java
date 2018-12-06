@@ -2,7 +2,10 @@ package com.example.demo.vo;
 
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 import org.apache.ibatis.type.Alias;
+import org.hibernate.validator.constraints.Length;
 
 import com.example.demo.collection.Paging;
 
@@ -13,7 +16,10 @@ import lombok.Data;
 public class FanBoardVO {
 	
 	private Integer fan_no;
+	@NotNull
+	@Length(max=200)
 	private String fan_title;
+	@NotNull
 	private String fan_content;
 	private String fan_credat;
 	private String fan_moddat;
@@ -21,6 +27,7 @@ public class FanBoardVO {
 	private Integer fan_lookupcnt;
 	private Integer fan_like;
 	private Integer fan_unlike;
+	@NotNull
 	private Integer ui_no;
 	private Paging paging;
 	private List<FanComentVO> fanComents;

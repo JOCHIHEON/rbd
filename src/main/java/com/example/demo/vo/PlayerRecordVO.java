@@ -1,5 +1,7 @@
 package com.example.demo.vo;
 
+import javax.validation.constraints.NotNull;
+
 import org.apache.ibatis.type.Alias;
 
 import com.example.demo.collection.Paging;
@@ -10,7 +12,9 @@ import lombok.Data;
 @Alias("playerrecordVo")
 public class PlayerRecordVO {
 
+	@NotNull
 	private Integer player_no;
+	@NotNull
 	private Integer team_code;
 	private String player_min; //출장시간 time
 	private double player_pts;

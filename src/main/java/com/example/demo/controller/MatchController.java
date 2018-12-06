@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,12 +24,12 @@ public class MatchController {
 	private MatchService matchService;
 	
 	@PostMapping("/match")
-	public Integer insertMatch(@RequestBody MatchInfoVO matchVo) {
+	public Integer insertMatch(@Valid @RequestBody MatchInfoVO matchVo) {
 		return matchService.insertMatch(matchVo);
 	}
 	
 	@PutMapping("/match")
-	public Integer updateMatch(@RequestBody MatchInfoVO matchVo) {
+	public Integer updateMatch(@Valid @RequestBody MatchInfoVO matchVo) {
 		return matchService.updateMatch(matchVo);
 	}
 	

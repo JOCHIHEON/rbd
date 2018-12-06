@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,12 +35,12 @@ public class QnaController {
 	private QnacomentService qcomentService;
 	
 	@PostMapping("/qna")
-	public Integer insertQnA(@RequestBody QnaboardVO qnaVo) {
+	public Integer insertQnA(@Valid @RequestBody QnaboardVO qnaVo) {
 		return qnaService.insertQnA(qnaVo);
 	}
 	
 	@PutMapping("/qna")
-	public Integer updateQnA(@RequestBody QnaboardVO qnaVo) {
+	public Integer updateQnA(@Valid @RequestBody QnaboardVO qnaVo) {
 		log.debug(qnaVo.toString());
 		return qnaService.updateQnA(qnaVo);
 	}
@@ -63,7 +64,7 @@ public class QnaController {
 	
 	/* qnacoment */
 	@PostMapping("/qnareply")
-	public Integer insertQnAComent(@RequestBody QnacomentVO qnacomentVo, HttpSession session) {
+	public Integer insertQnAComent(@Valid @RequestBody QnacomentVO qnacomentVo, HttpSession session) {
 		if((session.getAttribute("id")!= null && qnacomentVo.getUi_no()==null) || (session.getAttribute("manager")!=null && qnacomentVo.getAd_no()==null && qnacomentVo.getUi_no() != null)) {
 			return -1;
 		}
@@ -71,7 +72,7 @@ public class QnaController {
 	}
 	
 	@PutMapping("/qnareply")
-	public Integer updateQnAComent(@RequestBody QnacomentVO qnacomentVo, HttpSession session) {
+	public Integer updateQnAComent(@Valid @RequestBody QnacomentVO qnacomentVo, HttpSession session) {
 		if((session.getAttribute("id")!= null && qnacomentVo.getUi_no()==null) || (session.getAttribute("manager")!=null && qnacomentVo.getAd_no()==null && qnacomentVo.getUi_no() != null)) {
 			return -1;
 		}

@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,12 +24,12 @@ public class TeamDetailRecordController {
 	private TeamDetailRecordService teamDeService;
 	
 	@PostMapping("/detail")
-	public Integer insertTeamDeRecord(@RequestBody TeamDetailRecordVO teamDeRecordVo) {
+	public Integer insertTeamDeRecord(@Valid @RequestBody TeamDetailRecordVO teamDeRecordVo) {
 		return teamDeService.insertTeamDeRecord(teamDeRecordVo);
 	}
 	
 	@PutMapping("/detail")
-	public Integer updateTeamDeRecord(@RequestBody TeamDetailRecordVO teamDeRecordVo) {
+	public Integer updateTeamDeRecord(@Valid @RequestBody TeamDetailRecordVO teamDeRecordVo) {
 		return teamDeService.updateTeamDeRecord(teamDeRecordVo);
 	}
 	

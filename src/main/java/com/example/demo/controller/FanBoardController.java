@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,12 +30,12 @@ public class FanBoardController {
 	private FanComentService fanComentservice;
 	
 	@PostMapping("/fanboard")
-	public Integer insertFanBoard(@RequestBody FanBoardVO fanVo) {
+	public Integer insertFanBoard(@Valid @RequestBody FanBoardVO fanVo) {
 		return fanBoardService.insertFan(fanVo);
 	}
 	
 	@PutMapping("/fanboard")
-	public Integer updateFanBoard(@RequestBody FanBoardVO fanVo) {
+	public Integer updateFanBoard(@Valid @RequestBody FanBoardVO fanVo) {
 		return fanBoardService.updateFan(fanVo);
 	}
 	
@@ -58,12 +60,12 @@ public class FanBoardController {
 	
 	
 	@PostMapping("/fanreply")
-	public Integer insertFanComent(@RequestBody FanComentVO fanComentVo) {
+	public Integer insertFanComent(@Valid @RequestBody FanComentVO fanComentVo) {
 		return fanComentservice.insertFanComent(fanComentVo);
 	}
 	
 	@PutMapping("/fanreply")
-	public Integer updateFanComent(@RequestBody FanComentVO fanComentVo) {
+	public Integer updateFanComent(@Valid @RequestBody FanComentVO fanComentVo) {
 		return fanComentservice.updateFanComent(fanComentVo);
 	}
 	

@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,12 +32,12 @@ public class FreeBoardController {
 	private FreeComentService freeComentService;
 	
 	@PostMapping("/freeboard")
-	public Integer insertFree(@RequestBody FreeBoardVO freeVo) {
+	public Integer insertFree(@Valid @RequestBody FreeBoardVO freeVo) {
 		return freeboardService.insertFree(freeVo);
 	}
 	
 	@PutMapping("/freeboard")
-	public Integer updateFree(@RequestBody FreeBoardVO freeVo) {
+	public Integer updateFree(@Valid @RequestBody FreeBoardVO freeVo) {
 		return freeboardService.updateFree(freeVo);
 	}
 	
@@ -61,12 +63,12 @@ public class FreeBoardController {
 	/* reply */
 	
 	@PostMapping("/freereply")
-	public Integer insertFreeReply(@RequestBody FreeComentVO freeComentVo) {
+	public Integer insertFreeReply(@Valid @RequestBody FreeComentVO freeComentVo) {
 		return freeComentService.insertFreeComent(freeComentVo);
 	}
 	
 	@PutMapping("/freereply")
-	public Integer updateFreeReply(@RequestBody FreeComentVO freeComentVo) {
+	public Integer updateFreeReply(@Valid @RequestBody FreeComentVO freeComentVo) {
 		return freeComentService.updateFreeComent(freeComentVo);
 	}
 	

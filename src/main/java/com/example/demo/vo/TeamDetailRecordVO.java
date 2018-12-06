@@ -1,5 +1,7 @@
 package com.example.demo.vo;
 
+import javax.validation.constraints.NotNull;
+
 import org.apache.ibatis.type.Alias;
 
 import com.example.demo.collection.Paging;
@@ -10,7 +12,10 @@ import lombok.Data;
 @Alias("teamDeRecordVo")
 public class TeamDetailRecordVO {
 	
+	@NotNull
 	private Integer team_code;
+	@NotNull
+	private String season;
 	private double teamde_pts;
 	private double teamde_lostpts;
 	private double teamde_assist;
