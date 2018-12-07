@@ -12,4 +12,6 @@ public interface FreeBoardRepository {
 	public List<FreeBoardVO> freeListView(FreeBoardVO freeVo);
 	
 	public Integer selectFreeCount();
+	public Integer insertlookup(FreeBoardVO freeVo);
+	public Integer deleteLike(FreeBoardVO freeVo);
 }

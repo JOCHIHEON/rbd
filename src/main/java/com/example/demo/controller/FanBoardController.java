@@ -1,7 +1,12 @@
 package com.example.demo.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.collection.Paging;
+import com.example.demo.config.Paging;
 import com.example.demo.service.FanBoardService;
 import com.example.demo.service.FanComentService;
 import com.example.demo.vo.FanBoardVO;
@@ -45,14 +50,24 @@ public class FanBoardController {
 	}
 	
 	@GetMapping("/fanboard/{fan_no}")
-	public FanBoardVO fanView(@PathVariable Integer fan_no) {
-		return fanBoardService.fanView(fan_no);
+	public FanBoardVO fanView(@PathVariable Integer fan_no, HttpServletRequest req,HttpServletResponse res) {
+		boolean check = false;
+		Cookie[] cookies = req.getCookies();
+		Map<String, String> m = new HashMap<>();
+		for(Cookie cookie : cookies) {
+			m.put(cookie.getName(), cookie.getValue());
+		}
+		if(m.get("fanCnt")==null) {
+			res.addCookie(new Cookie("fanCnt", "fanView"+fan_no));
+			check=true;
+		}
+		return fanBoardService.fanView(fan_no,check);
 	}
 	
 	@GetMapping("/fanboard")
-	public List<FanBoardVO> fanListView(FanBoardVO fanVo, @RequestParam(value="clickBlock") Integer clickBlock){
+	public List<FanBoardVO> fanListView(FanBoardVO fanVo, @RequestParam(value="clickBlock",required=false) Integer clickBlock){
 		fanVo.setPaging(new Paging());
-		fanVo.getPaging().setClickBlock(clickBlock);
+		fanVo.getPaging().setClickBlock(clickBlock==null?0:clickBlock);
 		return fanBoardService.fanListView(fanVo);
 	}
 	

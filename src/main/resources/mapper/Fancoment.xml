@@ -21,6 +21,6 @@
 	</delete>
 	
 	<select id = "fanComentList" parameterType="int" resultType="fanComentVo">
-		select fanco_content, fanco_moddat,fan_no,ui_no,fanco_like, fanco_unlike from fan_comment where fan_no = #{fan_no}
+		select fanco_content, fanco_moddat,fan_no,ui_no from fan_comment where fan_no = #{fan_no}
 	</select>
 </mapper>

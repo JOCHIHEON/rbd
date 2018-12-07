@@ -1,4 +1,4 @@
-package com.example.demo.collection;
+package com.example.demo.config;
 
 import org.apache.ibatis.type.Alias;
 

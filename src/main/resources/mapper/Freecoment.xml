@@ -20,12 +20,7 @@
 	</delete>
 	
 	<select id = "freeComentList" parameterType="int" resultType="FreeComentVO">
-		select freco_content, freco_moddat,fre_no,ui_no,freco_like, freco_unlike from free_coment where fre_no = #{fre_no}
-		<!-- select f.freco_content, f.freco_moddat, f.fre_no, f.ui_no, lik.freco_like, unlik.freco_unlike
-		from free_coment f, 
-		(select count(*) freco_like from like_unlike where like_on = 1 and like_no = f.freco_no) lik,
-		(select count(*) freco_unlike from like_unlike where like_on = 2 and like_no = f.freco_no) unlik		
-		where fre_no = #{fre_no}; -->
+		select freco_content, freco_moddat,fre_no,ui_no from free_coment where fre_no = #{fre_no}
 	</select>
 
 </mapper>

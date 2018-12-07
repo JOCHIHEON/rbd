@@ -21,15 +21,34 @@
 	</delete>
 	
 	<select id="freeView" parameterType="int" resultType="freeboardVO">
-		select fre_title, fre_content, fre_moddat, fre_lookupcnt, fre_like, fre_unlike from free_board
+		select fre_no, ui_no,  fre_title, fre_content, fre_moddat, fre_lookupcnt, f_like from free_board
 		where fre_no = #{fre_no}
 	</select>
 	
 	<select id="freeListView" parameterType="freeboardVO" resultType="freeboardVO">
-		select fre_title, fre_content, fre_moddat, fre_lookupcnt from free_board
+		select fre_no, ui_no, fre_title, fre_content, fre_moddat, fre_lookupcnt from free_board
+		<where>
+			<if test="fre_title != null"> fre_title like concat('%', #{fre_title}, '%')</if>
+			<if test="fre_content != null"> fre_content like concat('%', #{fre_content}, '%')</if>
+		</where>
 		order by fre_no desc LIMIT #{paging.startViewNum}, #{paging.viewLength}
 	</select>
 	<select id="selectFreeCount" resultType="int">
 		select count(*) from free_board
+		<where>
+			<if test="fre_title != null"> fre_title like concat('%', #{fre_title}, '%')</if>
+			<if test="fre_content != null"> fre_content like concat('%', #{fre_content}, '%')</if>
+		</where>
 	</select>
+	
+	<update id="insertlookupFree" parameterType="freeboardVO">
+		update free_board
+		<set>
+			fre_lookupcnt = fre_lookupcnt+1
+		</set>
+		where fre_no = #{fre_no}
+	</update>
+	<delete id ="deleteLike" parameterType="freeboardVO">
+		delete from like_unlike where like_type = 1 and fre_no = #{fre_no}
+	</delete>
 </mapper>

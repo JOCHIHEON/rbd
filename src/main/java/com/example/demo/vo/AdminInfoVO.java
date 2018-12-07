@@ -4,7 +4,7 @@ import javax.validation.constraints.NotNull;
 
 import org.apache.ibatis.type.Alias;
 
-import com.example.demo.collection.Paging;
+import com.example.demo.config.Paging;
 
 import lombok.Data;
 

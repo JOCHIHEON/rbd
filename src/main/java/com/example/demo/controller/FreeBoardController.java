@@ -1,7 +1,12 @@
 package com.example.demo.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.collection.Paging;
+import com.example.demo.config.Paging;
 import com.example.demo.service.FreeBoardService;
 import com.example.demo.service.FreeComentService;
 import com.example.demo.vo.FreeBoardVO;
@@ -47,10 +52,19 @@ public class FreeBoardController {
 	}
 	
 	@GetMapping("/freeboard/{fre_no}")
-	public FreeBoardVO freeView(@PathVariable Integer fre_no) {
-		//like unlike count
-		//조회수 중복 방지 캐시필요
-		return freeboardService.freeView(fre_no);
+	public FreeBoardVO freeView(@PathVariable Integer fre_no, HttpServletRequest req,HttpServletResponse res) {
+		boolean check = false;
+		Cookie[] cookies = req.getCookies();
+		Map<String, String> m = new HashMap<>();
+		for(Cookie cookie : cookies) {
+			m.put(cookie.getName(), cookie.getValue());
+		}
+		if(m.get("freeCnt")==null) {
+			res.addCookie(new Cookie("freeCnt", "freeView"+fre_no));
+			check=true;
+		}
+
+		return freeboardService.freeView(fre_no, check);
 	}
 	
 	@GetMapping("/freeboard")
@@ -59,7 +73,7 @@ public class FreeBoardController {
 		freeVo.getPaging().setClickBlock(clickBlock==null?0:clickBlock);
 		return freeboardService.freeListView(freeVo);
 	}
-	
+		
 	/* reply */
 	
 	@PostMapping("/freereply")

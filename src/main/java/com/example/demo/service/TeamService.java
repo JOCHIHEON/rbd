@@ -2,14 +2,11 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.vo.TeamInfoVO;
+import com.example.demo.collection.Team;
 
 public interface TeamService {
-	public Integer insertTeam(TeamInfoVO teamVo);
-	public Integer updateTeam(TeamInfoVO teamVo);
-	public Integer deleteTeam(TeamInfoVO teamVo);
-	
-	public TeamInfoVO teamView(Integer team_code);
-	public List<TeamInfoVO> teamListView(TeamInfoVO teamVo);
+	public Team teamView(String team_code);
+	public Team teamDetailView(String team_code, String season);
+	public List<Team> teamListView(Team teamVo);
 	
 }

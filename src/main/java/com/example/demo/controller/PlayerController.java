@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.collection.Player;
 import com.example.demo.service.PlayerService;
-import com.example.demo.vo.PlayerVO;
 
 @RestController
 public class PlayerController {
@@ -23,29 +23,20 @@ public class PlayerController {
 	@Autowired
 	private PlayerService playerService;
 	
-	@PostMapping("/player")
-	public Integer insertPlayer(@Valid @RequestBody PlayerVO playerVo) {
-		return playerService.insertPlayer(playerVo);
-	}
-	
-	@PutMapping("/player")
-	public Integer updatePlayer(@Valid @RequestBody PlayerVO playerVo) {
-		return playerService.updatePlayer(playerVo);
-	}
-	
-	@DeleteMapping("/player")
-	public Integer deletePlayer(@RequestBody PlayerVO playerVo) {
-		return playerService.deletePlayer(playerVo);
-	}
-	
-	@GetMapping("/player/{player_no}")
-	public PlayerVO playerView(@PathVariable Integer player_no) {
-		return playerService.playerView(player_no);
+	@GetMapping("/player/{team_code}/{player_no}")
+	public Player playerView(@PathVariable String team_code, @PathVariable String player_no) {
+		return playerService.playerView(team_code, player_no);
 	}
 	
 	@GetMapping("/player")
-	public List<PlayerVO> playerListView(@ModelAttribute PlayerVO playerVo){
+	public List<Player> playerListView(@ModelAttribute Player playerVo){
 		return playerService.playerListView(playerVo);
+		
+	}
+	
+	@GetMapping("/player/{team_code}")
+	public List<Player> playerListView(@ModelAttribute Player playerVo, @PathVariable String team_code){
+		return playerService.teamPlayerList(team_code);
 		
 	}
 } 

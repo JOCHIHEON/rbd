@@ -9,6 +9,6 @@ public interface FanBoardService {
 	public Integer insertFan(FanBoardVO fanVo);
 	public Integer updateFan(FanBoardVO fanVo);
 	public Integer deleteFan(FanBoardVO fanVo);
-	public FanBoardVO fanView(Integer fan_no);
+	public FanBoardVO fanView(Integer fan_no, boolean check);
 	public List<FanBoardVO> fanListView(FanBoardVO fanVo);
 }

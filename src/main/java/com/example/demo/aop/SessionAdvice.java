@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.example.demo.collection.PassEncryption;
+import com.example.demo.config.PassEncryption;
 import com.example.demo.service.SignService;
 import com.example.demo.vo.UserInfoVO;
 

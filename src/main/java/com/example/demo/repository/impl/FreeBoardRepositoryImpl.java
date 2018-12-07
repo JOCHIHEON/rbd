@@ -53,4 +53,16 @@ public class FreeBoardRepositoryImpl implements FreeBoardRepository {
 		return ss.selectOne("com.example.demo.FREEBOARD.selectFreeCount");
 	}
 
+	@Override
+	public Integer insertlookup(FreeBoardVO freeVo) {
+		// TODO Auto-generated method stub
+		return ss.insert("com.example.demo.FREEBOARD.insertlookupFree",freeVo);
+	}
+
+	@Override
+	public Integer deleteLike(FreeBoardVO freeVo) {
+		// TODO Auto-generated method stub
+		return ss.delete("com.example.demo.FREEBOARD.deleteLike", freeVo);
+	}
+
 }

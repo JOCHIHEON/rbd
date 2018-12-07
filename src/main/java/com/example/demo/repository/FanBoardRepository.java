@@ -12,5 +12,7 @@ public interface FanBoardRepository {
 	public List<FanBoardVO> fanListView(FanBoardVO fanVo);
 	
 	public Integer countFan();
+	public Integer insertlookup(FanBoardVO fanVo);
+	public Integer deleteLike(FanBoardVO fanVo);
 	
 }

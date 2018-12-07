@@ -5,43 +5,37 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.collection.Team;
 import com.example.demo.repository.TeamRepository;
 import com.example.demo.service.TeamService;
-import com.example.demo.vo.TeamInfoVO;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class TeamServiceImpl implements TeamService {
 
 	@Autowired
 	private TeamRepository teamRepo;
+
+
 	@Override
-	public Integer insertTeam(TeamInfoVO teamVo) {
+	public Team teamView(String team_code) {
 		// TODO Auto-generated method stub
-		return teamRepo.insertTeam(teamVo);
+		return teamRepo.findByTeam(team_code);
 	}
 
 	@Override
-	public Integer updateTeam(TeamInfoVO teamVo) {
-		// TODO Auto-generated method stub
-		return teamRepo.updateTeam(teamVo);
+	public Team teamDetailView(String team_code, String season) {
+		// TODO Auto-generated method stub	
+		return teamRepo.findByTeamDetail(team_code,season);
 	}
 
 	@Override
-	public Integer deleteTeam(TeamInfoVO teamVo) {
+	public List<Team> teamListView(Team teamVo) {
 		// TODO Auto-generated method stub
-		return teamRepo.deleteTeam(teamVo);
-	}
-
-	@Override
-	public TeamInfoVO teamView(Integer team_code) {
-		// TODO Auto-generated method stub
-		return teamRepo.teamView(team_code);
-	}
-
-	@Override
-	public List<TeamInfoVO> teamListView(TeamInfoVO teamVo) {
-		// TODO Auto-generated method stub
-		return teamRepo.teamListView(teamVo);
+		//return teamRepo.findByTeam();
+		return teamRepo.findByTeamList();
 	}
 
 }

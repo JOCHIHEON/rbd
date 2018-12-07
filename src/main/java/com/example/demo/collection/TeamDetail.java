@@ -1,20 +1,10 @@
-package com.example.demo.vo;
-
-import javax.validation.constraints.NotNull;
-
-import org.apache.ibatis.type.Alias;
-
-import com.example.demo.collection.Paging;
+package com.example.demo.collection;
 
 import lombok.Data;
 
 @Data
-@Alias("teamDeRecordVo")
-public class TeamDetailRecordVO {
+public class TeamDetail {
 	
-	@NotNull
-	private Integer team_code;
-	@NotNull
 	private String season;
 	private double teamde_pts;
 	private double teamde_lostpts;
@@ -29,7 +19,4 @@ public class TeamDetailRecordVO {
 	private double teamde_threeptp;
 	private double teamde_ftp;
 	private double teamde_to;
-	
-	private Paging paging;
-	
 }

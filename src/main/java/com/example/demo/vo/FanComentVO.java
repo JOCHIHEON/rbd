@@ -13,8 +13,6 @@ public class FanComentVO {
 	private Integer fanco_no;
 	@NotNull
 	private String fanco_content;
-	private Integer fanco_like;
-	private Integer fanco_unlike;
 	private String fanco_credat;
 	private String fanco_moddat;
 	@NotNull

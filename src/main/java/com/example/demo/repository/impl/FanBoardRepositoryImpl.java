@@ -52,4 +52,16 @@ public class FanBoardRepositoryImpl implements FanBoardRepository {
 		return ss.selectOne("com.example.demo.FANBOARD.countFan");
 	}
 
+	@Override
+	public Integer insertlookup(FanBoardVO fanVo) {
+		// TODO Auto-generated method stub
+		return ss.insert("com.example.demo.FANBOARD.insertlookupFan", fanVo);
+	}
+
+	@Override
+	public Integer deleteLike(FanBoardVO fanVo) {
+		// TODO Auto-generated method stub
+		return ss.delete("com.example.demo.FANBOARD.deleteLike", fanVo);
+	}
+
 }

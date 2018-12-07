@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.collection.Paging;
-import com.example.demo.collection.PassEncryption;
+import com.example.demo.config.Paging;
+import com.example.demo.config.PassEncryption;
 import com.example.demo.service.AdminService;
 import com.example.demo.vo.AdminInfoVO;
 

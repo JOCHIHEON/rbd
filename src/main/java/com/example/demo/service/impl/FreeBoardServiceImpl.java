@@ -37,9 +37,13 @@ public class FreeBoardServiceImpl implements FreeBoardService{
 	}
 
 	@Override
-	public FreeBoardVO freeView(Integer fre_no) {
+	public FreeBoardVO freeView(Integer fre_no,boolean check) {
 		// TODO Auto-generated method stub
 		FreeBoardVO freeVo =  freeboardRepo.freeView(fre_no);
+		if(check) {
+			freeboardRepo.insertlookup(freeVo);
+			freeVo =  freeboardRepo.freeView(fre_no);
+		}
 		freeVo.setFreeComents(freeComentRepo.freeComentList(fre_no));
 		return freeVo;
 	}
