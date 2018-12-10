@@ -1,9 +1,7 @@
 package com.example.demo.service;
 
-import java.util.List;
-
-import com.example.demo.collection.NaverKBLNews;
+import java.util.Map;
 
 public interface NaverNewsService {
-	public List<NaverKBLNews> newsList(Integer page);
+	public Map<String, Object> newsList(Integer page);
 }

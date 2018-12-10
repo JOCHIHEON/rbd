@@ -13,13 +13,12 @@ import com.example.demo.repository.NaverNewsRepositoryMk;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Repository
+@Repository//("nickname") -> autowrite 에서 Qualifier로 바로보논건데..똥멍충
 @Slf4j
 public class NaverNewsRepositoryImpl implements NaverNewsRepositoryMk {
 
 	@Autowired
 	private MongoTemplate mt;
-	
 	
 	@Override
 	public List<NaverKBLNews> findByPaging(Integer page) {
