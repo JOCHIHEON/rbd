@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.USERINFO">
+	<insert id="userinfoInsert" parameterType="userVO">
+		insert into
+		user_info(ui_id, ui_name, ui_pwd, ui_nick, ui_support, ui_email, ui_tell)
+		values(#{ui_id}, #{ui_name}, #{ui_pwd}, #{ui_nick}, #{ui_support}, #{ui_email}, #{ui_tell})
+	</insert><!-- 회원 가입 -->
+
+	<update id="userinfoUpdate" parameterType="userVO">
+		update user_info
+		<set>
+			<if test="ui_name != null">ui_name = #{ui_name}</if>
+			<if test="ui_pwd != null">, ui_pwd = #{ui_pwd}</if>
+			<if test="ui_nick != null">, ui_nick = #{ui_nick}</if>
+			<if test="ui_support != null">, ui_support = #{ui_support}</if>
+			<if test="ui_email != null">, ui_email = #{ui_email}</if>
+			<if test="ui_tell != null">, ui_tell = #{ui_tell}</if>
+			<if test="ui_active != null">, ui_active = #{ui_active}</if>
+		</set>
+		where ui_no = #{ui_no}
+	</update><!-- 회원 정보 수정 -->
+	
+	<select id="userinfoIDCheck" resultType="int" parameterType="String">
+		select count(*) from user_info where ui_id = #{ui_id}
+	</select><!-- 아이디 중복 조회 -->
+	
+	<select id="userinfoSelect" resultType="userVO" parameterType="userVO">
+		select ui_no, ui_id from user_info where ui_id = #{ui_id} and ui_pwd = #{ui_pwd}
+	</select><!-- 로그인 -->
+	
+	<select id="userinfoView" resultType="userVO" parameterType="Integer">
+		select ui_id, ui_name, ui_nick, ui_support, ui_email, ui_tell from user_info where ui_no = #{ui_no}
+	</select><!-- 개인 뷰 -->
+	
+	<select id="userinfoList" resultType="userVO" parameterType="userVO">
+	select ui_id, ui_name, ui_nick, ui_support, ui_email, ui_tell from user_info
+	<where>
+		<if test="ui_name != null">ui_name like CONCAT('%', #{ui_name}, '%')</if>
+		<if test="ui_nick != null">and ui_nick like CONCAT ('%', #{ui_nick}, '%')</if>
+		<if test="ui_support != null">and ui_support = #{ui_support} </if>
+		</where>
+		order by ui_no desc LIMIT #{paging.startViewNum}, #{paging.viewLength} 
+	</select>
+	
+	<select id="countUser" resultType="int">
+		select count(*) from user_info
+	</select>
+</mapper>

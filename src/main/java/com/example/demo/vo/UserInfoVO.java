@@ -36,5 +36,6 @@ public class UserInfoVO {
 	private String ui_tell;
 	private Integer ui_active;
 	private Paging paging;
+	private String token;
 }
 

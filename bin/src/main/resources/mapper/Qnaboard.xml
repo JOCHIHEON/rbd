@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.QNABOARD">
+	<insert id="insertQnA" parameterType="qnaboardVO">
+		insert into qnaboard(ui_no, qna_content, qna_credat, qna_moddate) values(#{ui_no},#{qna_content}, NOW(), NOW() )
+	</insert>
+	<update id="updateQnA" parameterType="qnaboardVO">
+		update qnaboard
+		<set>
+			qna_content = #{qna_content}, qna_moddate=now()
+		</set>
+		where ui_no = #{ui_no} and qna_no = #{qna_no}
+	</update>
+	<select id="selectQnA" parameterType="int" resultType="qnaboardVO">
+		select * from qnaboard where qna_no = #{qna_no}
+	</select>
+	<select id="selectListQnA" resultType="qnaboardVO" parameterType="qnaboardVO">
+		select * from qnaboard 
+		<where>
+			<if test="ui_no != null">ui_no = #{ui_no}</if>
+		</where>
+		order by qna_no desc LIMIT #{paging.startViewNum}, #{paging.viewLength}
+	</select>
+	<delete id="deleteQnA" parameterType="qnaboardVO">
+		delete from qnaboard where ui_no = #{ui_no} and qna_no = #{qna_no}
+	</delete>
+	
+	<select id="selectQnACount" resultType="int">
+		select count(*) from qnaboard
+	</select>
+</mapper>

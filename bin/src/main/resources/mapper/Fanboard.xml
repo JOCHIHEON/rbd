@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.FANBOARD">
+	<insert id="insertFan" parameterType="fanboardVo">
+		insert into fan_board(fan_title,fan_content,fan_credat,fan_moddat,ui_no) 
+		values(#{fan_title},#{fan_content},now(), now(),#{ui_no})
+	</insert>
+	<update id="updateFan" parameterType="fanboardVo">
+		update fan_board
+		<set>
+			<if test="fan_title != null">fan_title = #{fan_title},</if>
+			<if test="fan_content != null">fan_content = #{fan_content},</if>
+			fan_moddat = now()
+		</set>
+		where fan_no = #{fan_no} and ui_no = #{ui_no}
+	</update>
+	<delete id="deleteFan" parameterType="fanboardVo">
+		delete from fan_board where fan_no = #{fan_no} and ui_no = #{ui_no}
+	</delete>
+	
+	<select id="fanView" parameterType="int" resultType="fanboardVo">
+		select fan_no,fan_title, fan_content, fan_moddat, fan_lookupcnt, f_like from fan_board
+		where fan_no = #{fan_no}
+	</select>
+	<select id="fanListView" parameterType="fanboardVo" resultType="fanboardVo">
+		select fan_no,fan_title,fan_content, fan_moddat,fan_lookupcnt from fan_board
+		<where>
+			<if test="fan_title != null"> fan_title like concat('%', #{fan_title}, '%')</if>
+			<if test="fan_content != null"> fan_content like concat('%', #{fan_content}, '%')</if>
+		</where>
+		order by fan_no desc LIMIT #{paging.startViewNum}, #{paging.viewLength}
+	</select>
+	
+	<select id="countFan" resultType="int">
+		select count(*) from fan_board
+		<where>
+			<if test="fan_title != null"> fan_title like concat('%', #{fan_title}, '%')</if>
+			<if test="fan_content != null"> fan_content like concat('%', #{fan_content}, '%')</if>
+		</where>
+	</select>
+
+	<update id="insertlookupFan" parameterType="fanboardVo">
+		update fan_board
+		<set>
+			fan_lookupcnt = fan_lookupcnt+1
+		</set>
+		where fan_no = #{fan_no}
+	</update>
+	
+	<delete id="deleteLike" parameterType="fanboardVo">
+		delete from like_unlike where like_type = 2 and board_no = #{fan_no}
+	</delete>
+</mapper>

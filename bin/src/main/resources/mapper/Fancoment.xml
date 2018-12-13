@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.FANCOMENT">
+<insert id="insertFanComent" parameterType="fanComentVo">
+		insert into fan_comment(fanco_content, fanco_credat,fanco_moddat,ui_no,fan_no)
+		values(#{fanco_content},now(),now(),#{ui_no},#{fan_no})
+	</insert>
+	<update id="updateFanComent" parameterType="fanComentVo">
+		update fan_comment
+		<set>
+			fanco_content = #{fanco_content}, fanco_moddat = now()
+		</set>
+		<where>
+			ui_no = #{ui_no} and fan_no = #{fan_no} and fanco_no = #{fanco_no}
+		</where> 
+	</update>
+	<delete id="deleteFanComent" parameterType="fanComentVo">
+		delete from fan_comment where fan_no = #{fan_no} and ui_no = #{ui_no}
+	</delete>
+	
+	<select id = "fanComentList" parameterType="int" resultType="fanComentVo">
+		select fanco_content, fanco_moddat,fan_no,ui_no from fan_comment where fan_no = #{fan_no}
+	</select>
+</mapper>

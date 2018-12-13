@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.LIKEUNLIKE">
+	<insert id="insertLiUnLi" parameterType="likeUnlikeVo">
+		insert into like_unlike(like_type,board_no,ui_no
+		<if test="lik != null ">, lik</if>
+		) values(#{like_type}, #{board_no}, #{ui_no}
+		<if test="lik != null ">, #{lik}</if>
+		)
+	</insert>
+	<delete id="deleteLiUnLi" parameterType="likeUnlikeVo">
+		delete from like_unlike where like_type = #{like_type} and board_no = #{board_no} and ui_no = #{ui_no}
+	</delete>
+	
+	<select id="selectLiUnLi" parameterType="likeUnlikeVo" resultType="int">
+		select count(*) from like_unlike where like_type = #{like_type} and board_no = #{board_no} and ui_no = #{ui_no}
+	</select>
+	<update id="liUnliUp" parameterType="likeUnlikeVo">
+		update
+		<if test="like_type==1">
+			free_board f,
+		</if>
+		<if test="like_type==2">
+			fan_board f,
+		</if>
+		(select count(lik) as licnt from like_unlike where like_type =
+		#{like_type} and board_no = #{board_no}) l
+		<set>
+			f_like = l.licnt
+		</set>
+		<where>
+			<if test="like_type==1">
+				fre_no = #{board_no}
+			</if>
+			<if test="like_type==2">
+				fan_no = #{board_no}
+			</if>
+		</where>
+	</update>
+</mapper>
+
+<!-- update free_board f, (select count(unlik) licnt, count(lik) unlicnt from like_unlike where board_no = 1) l set fre_like = l.unlicnt, fre_unlike = l.licnt
+where fre_no = 1; -->

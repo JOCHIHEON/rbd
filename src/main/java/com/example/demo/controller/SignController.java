@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.config.Paging;
 import com.example.demo.config.PassEncryption;
+import com.example.demo.jwt.JWTFactory;
 import com.example.demo.service.SignService;
 import com.example.demo.vo.UserInfoVO;
 
@@ -26,7 +26,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController // <- controller + responsebody
 public class SignController {
-
+	@Autowired
+	private JWTFactory jwtf;
 	@Autowired
 	private SignService signService;
 
@@ -51,18 +52,17 @@ public class SignController {
 	}
 
 	@PostMapping("/login")
-	public Integer selectSign(@RequestBody UserInfoVO userVo, HttpSession session) {
+	public UserInfoVO selectSign(@RequestBody UserInfoVO userVo, HttpSession session) throws Exception {
 		userVo.setUi_pwd(PassEncryption.encPwd(userVo.getUi_pwd()));
 		userVo = signService.selectSign(userVo);
 		if (userVo.getUi_no() != 0) {
-			session.setAttribute("id", userVo.getUi_id());
-			session.setAttribute("no", userVo.getUi_no());
+			userVo.setToken(jwtf.createJWT(userVo));
 			log.debug("userVo =>{}", userVo.toString());
 			log.debug("session no => {}", session.getAttribute("no"));
 			log.debug("session =>{}", session.getAttribute("id"));
-			return 1;
+			return userVo;
 		}
-		return 0;
+		return null;
 	}
 
 	@GetMapping("/user/{ui_no}")
