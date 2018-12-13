@@ -56,6 +56,7 @@ public class SignController {
 		userVo.setUi_pwd(PassEncryption.encPwd(userVo.getUi_pwd()));
 		userVo = signService.selectSign(userVo);
 		if (userVo.getUi_no() != 0) {
+			userVo.setUi_pwd(null);
 			userVo.setToken(jwtf.createJWT(userVo));
 			log.debug("userVo =>{}", userVo.toString());
 			log.debug("session no => {}", session.getAttribute("no"));
