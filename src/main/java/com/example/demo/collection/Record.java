@@ -14,4 +14,6 @@ public class Record {
 	private String awayName;
 	private Integer homeScore;
 	private Integer awayScore;
+	
+	private String score;
 }
