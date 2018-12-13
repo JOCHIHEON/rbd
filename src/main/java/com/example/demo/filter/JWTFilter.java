@@ -30,7 +30,7 @@ public class JWTFilter extends  GenericFilterBean  {
         if (request instanceof HttpServletRequest) {
         	HttpServletRequest req = (HttpServletRequest) request;
         	log.info("req=>{}",req);
-        	if(req.getRequestURI().indexOf("board")!=-1) {
+        	if(req.getRequestURI().indexOf("boardsave")!=-1) {
 	        	String id = req.getHeader("X-Auth-Id");
 	        	String token = req.getHeader("X-Auth-Token");
 	        	Map<String,String> map = new HashMap<String,String>();
