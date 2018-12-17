@@ -27,7 +27,6 @@ public class JWTFactory {
 
 	static{
 	    Calendar cal = Calendar.getInstance();
-	    //cal.add(Calendar.MONTH, -1);
 	    ISSUED_DATE = cal.getTime();
 	    cal.add(Calendar.DATE, 10);
 		EXPIRES_DATE = cal.getTime();
