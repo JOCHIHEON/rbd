@@ -69,7 +69,7 @@ public class FanBoardController {
 		fanVo.getPaging().setClickBlock(clickBlock==null?0:clickBlock);
 		map.put("fanList", fanBoardService.fanListView(fanVo));
 		map.put("paging", fanVo.getPaging());
-		return fanBoardService.fanListView(fanVo);
+		return map;
 	}
 	
 	/* fanReply */
