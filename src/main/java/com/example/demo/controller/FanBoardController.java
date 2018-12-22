@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -65,9 +64,11 @@ public class FanBoardController {
 	}
 	
 	@GetMapping("/fanboard")
-	public List<FanBoardVO> fanListView(FanBoardVO fanVo, @RequestParam(value="clickBlock",required=false) Integer clickBlock){
+	public Map<String,Object> fanListView(FanBoardVO fanVo, @RequestParam(value="clickBlock",required=false) Integer clickBlock, Map<String,Object> map){
 		fanVo.setPaging(new Paging());
 		fanVo.getPaging().setClickBlock(clickBlock==null?0:clickBlock);
+		map.put("fanList", fanBoardService.fanListView(fanVo));
+		map.put("paging", fanVo.getPaging());
 		return fanBoardService.fanListView(fanVo);
 	}
 	

@@ -1,6 +1,7 @@
 package com.example.demo.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,7 +58,7 @@ public class FanBoardServiceImpl implements FanBoardService {
 	}
 
 	@Override
-	public List<FanBoardVO> fanListView(FanBoardVO fanVo) {
+	public Map<String, Object> fanListView(FanBoardVO fanVo) {
 		// TODO Auto-generated method stub
 		fanVo.getPaging().setPaging(fanVo.getPaging().getClickBlock(), fanBoardRepo.countFan());
 		return fanBoardRepo.fanListView(fanVo);

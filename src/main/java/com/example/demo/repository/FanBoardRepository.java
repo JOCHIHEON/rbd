@@ -1,6 +1,6 @@
 package com.example.demo.repository;
 
-import java.util.List;
+import java.util.Map;
 
 import com.example.demo.vo.FanBoardVO;
 
@@ -9,7 +9,7 @@ public interface FanBoardRepository {
 	public Integer updateFan(FanBoardVO fanVo);
 	public Integer deleteFan(FanBoardVO fanVo);
 	public FanBoardVO fanView(Integer fan_no);
-	public List<FanBoardVO> fanListView(FanBoardVO fanVo);
+	public Map<String, Object> fanListView(FanBoardVO fanVo);
 	
 	public Integer countFan();
 	public Integer insertlookup(FanBoardVO fanVo);
