@@ -39,17 +39,17 @@ public class FanBoardServiceImpl implements FanBoardService {
 	public Integer deleteFan(FanBoardVO fanVo) {
 		// TODO Auto-generated method stub
 		int suc = fanBoardRepo.deleteFan(fanVo);
-		if( suc == 1 ) {
+		if (suc == 1) {
 			suc += fanBoardRepo.deleteLike(fanVo);
 		}
 		return suc;
 	}
 
 	@Override
-	public FanBoardVO fanView(Integer fan_no,boolean check) {
+	public FanBoardVO fanView(Integer fan_no, boolean check) {
 		// TODO Auto-generated method stub
 		FanBoardVO fanVo = fanBoardRepo.fanView(fan_no);
-		if(check) {
+		if (check) {
 			fanBoardRepo.insertlookup(fanVo);
 			fanVo = fanBoardRepo.fanView(fan_no);
 		}
@@ -60,7 +60,7 @@ public class FanBoardServiceImpl implements FanBoardService {
 	@Override
 	public List<FanBoardVO> fanListView(FanBoardVO fanVo) {
 		// TODO Auto-generated method stub
-		fanVo.getPaging().setPaging(fanVo.getPaging().getClickBlock(), (int)fanBoardRepo.countFan());
+		fanVo.getPaging().setPaging(fanVo.getPaging().getClickBlock(), (int) fanBoardRepo.countFan());
 		return fanBoardRepo.fanListView(fanVo);
 	}
 
