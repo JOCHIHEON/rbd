@@ -60,7 +60,7 @@ public class FanBoardServiceImpl implements FanBoardService {
 	@Override
 	public List<FanBoardVO> fanListView(FanBoardVO fanVo) {
 		// TODO Auto-generated method stub
-		fanVo.getPaging().setPaging(fanVo.getPaging().getClickBlock(), fanBoardRepo.countFan());
+		fanVo.getPaging().setPaging(fanVo.getPaging().getClickBlock(), (int)fanBoardRepo.countFan());
 		return fanBoardRepo.fanListView(fanVo);
 	}
 
