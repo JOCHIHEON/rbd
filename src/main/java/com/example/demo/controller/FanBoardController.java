@@ -64,7 +64,8 @@ public class FanBoardController {
 	}
 	
 	@GetMapping("/fanboard")
-	public Map<String,Object> fanListView(FanBoardVO fanVo, @RequestParam(value="clickBlock",required=false) Integer clickBlock, Map<String,Object> map){
+	public Map<String,Object> fanListView(FanBoardVO fanVo, @RequestParam(value="clickBlock",required=false) Integer clickBlock){
+		Map<String, Object> map = new HashMap<>();
 		fanVo.setPaging(new Paging());
 		fanVo.getPaging().setClickBlock(clickBlock==null?0:clickBlock);
 		map.put("fanList", fanBoardService.fanListView(fanVo));
