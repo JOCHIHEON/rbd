@@ -55,7 +55,7 @@ public class QnaController {
 	@GetMapping("/qna")
 	public Map<String,Object> selectListQnA(@ModelAttribute QnaboardVO qnaVo, @RequestParam(value="clickBlock") Integer clickBlock){
 		Map<String, Object> map = new HashMap<>();
-		qnaVo.setPaging(new Paging());
+		qnaVo.setPaging(new Paging()); 
 		qnaVo.getPaging().setClickBlock(clickBlock);
 		map.put("qnaList", qnaService.selectListQnA(qnaVo));
 		map.put("paging", qnaVo.getPaging());
