@@ -22,7 +22,9 @@ public class FreeBoardVO {
 	@Length(max=200)
 	private String fre_title;
 	@NotNull
+	@Length(max=3000)
 	private String fre_content;
+	@NotNull
 	private String fre_credat; //등록일
 	private String fre_moddat; //수정일
 	private Integer fre_lookupcnt; //조회수
