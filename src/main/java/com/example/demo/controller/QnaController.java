@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -51,10 +53,13 @@ public class QnaController {
 	}
 	
 	@GetMapping("/qna")
-	public List<QnaboardVO> selectListQnA(@ModelAttribute QnaboardVO qnaVo, @RequestParam(value="clickBlock") Integer clickBlock){
+	public Map<String,Object> selectListQnA(@ModelAttribute QnaboardVO qnaVo, @RequestParam(value="clickBlock") Integer clickBlock){
+		Map<String, Object> map = new HashMap<>();
 		qnaVo.setPaging(new Paging());
 		qnaVo.getPaging().setClickBlock(clickBlock);
-		return qnaService.selectListQnA(qnaVo);
+		map.put("qnaList", qnaService.selectListQnA(qnaVo));
+		map.put("paging", qnaVo.getPaging());
+		return map;
 	}
 	
 	@DeleteMapping("/qna")

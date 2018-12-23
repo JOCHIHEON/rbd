@@ -68,10 +68,13 @@ public class FreeBoardController {
 	}
 	
 	@GetMapping("/freeboard")
-	public List<FreeBoardVO> freeListView(FreeBoardVO freeVo, @RequestParam(value="clickBlock",required=false) Integer clickBlock){
+	public Map<String,Object> freeListView(FreeBoardVO freeVo, @RequestParam(value="clickBlock",required=false) Integer clickBlock){
+		Map<String, Object> map = new HashMap<>();
 		freeVo.setPaging(new Paging());
 		freeVo.getPaging().setClickBlock(clickBlock==null?0:clickBlock);
-		return freeboardService.freeListView(freeVo);
+		map.put("freeList", freeboardService.freeListView(freeVo));
+		map.put("paging", freeVo.getPaging());
+		return map;
 	}
 		
 	/* reply */
