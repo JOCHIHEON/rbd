@@ -30,7 +30,7 @@ public class Paging {
 		startBlock = ((clickBlock -1) / blockLength) * blockLength + 1;
 		endBlock = startBlock + blockLength - 1;
 		if(totalView<=endBlock) {
-			endBlock = totalView;
+			endBlock = totalView; 
 		}
 				
 		startViewNum = (clickBlock - 1) * viewLength + 1 - 1; //mysql limit 0부터 시작
