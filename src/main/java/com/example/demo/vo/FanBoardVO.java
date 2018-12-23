@@ -20,6 +20,7 @@ public class FanBoardVO {
 	@Length(max=200)
 	private String fan_title;
 	@NotNull
+	@Length(max=3000)
 	private String fan_content;
 	private String fan_credat;
 	private String fan_moddat;

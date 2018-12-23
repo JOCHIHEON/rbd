@@ -19,7 +19,10 @@ public class QnaboardVO {
 	private Integer ui_no;
 	private Integer qna_no;
 	@NotNull
-	@Length(max=200)
+	@Length(max = 200)
+	private String qna_title;
+	@NotNull
+	@Length(max = 3000)
 	private String qna_content;
 	private String qna_credat;
 	private String qna_moddate;

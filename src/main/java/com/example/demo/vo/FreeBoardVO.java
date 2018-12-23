@@ -19,16 +19,15 @@ public class FreeBoardVO {
 	private Integer ui_no;
 	private Integer fre_no;
 	@NotNull
-	@Length(max=200)
+	@Length(max = 200)
 	private String fre_title;
 	@NotNull
-	@Length(max=3000)
+	@Length(max = 3000)
 	private String fre_content;
-	@NotNull
-	private String fre_credat; //등록일
-	private String fre_moddat; //수정일
-	private Integer fre_lookupcnt; //조회수
-	private Integer f_like; //좋아요
+	private String fre_credat; // 등록일
+	private String fre_moddat; // 수정일
+	private Integer fre_lookupcnt; // 조회수
+	private Integer f_like; // 좋아요
 	private List<FreeComentVO> freeComents;
 	private Paging paging;
 }
