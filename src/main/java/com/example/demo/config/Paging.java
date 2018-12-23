@@ -24,8 +24,8 @@ public class Paging {
 		if(clickBlock==0) {
 			clickBlock = 1;
 		}
-		totalView = (int) Math.ceil(totalData / viewLength);
-		totalBlock =  (int) Math.ceil(totalView / blockLength);
+		totalView = (int)(Math.ceil(totalData / viewLength));
+		totalBlock =  (int)(Math.ceil(totalView / blockLength));
 		
 		startBlock = ((clickBlock -1) / blockLength) * blockLength + 1;
 		endBlock = startBlock + blockLength - 1;
