@@ -26,7 +26,7 @@
 	</select>
 	
 	<select id="freeListView" parameterType="freeboardVO" resultType="freeboardVO">
-		select fre_no, ui_no, fre_title, fre_content, fre_moddat, fre_lookupcnt from free_board
+		select fb.fre_no, fb.ui_no, fb.fre_title, fb.fre_content, fb.fre_moddat, fb.fre_lookupcnt, ui.ui_nick from free_board fb, user_info ui where ui.ui_no = fb.ui_no
 		<where>
 			<if test="fre_title != null"> fre_title like concat('%', #{fre_title}, '%')</if>
 			<if test="fre_content != null"> fre_content like concat('%', #{fre_content}, '%')</if>

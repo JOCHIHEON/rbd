@@ -17,6 +17,7 @@ public class FreeBoardVO {
 
 	@NotNull
 	private Integer ui_no;
+	private String ui_nick;
 	private Integer fre_no;
 	@NotNull
 	@Length(max = 200)
