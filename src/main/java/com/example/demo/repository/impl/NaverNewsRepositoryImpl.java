@@ -25,7 +25,7 @@ public class NaverNewsRepositoryImpl implements NaverNewsRepositoryMk {
 		log.info("mt=>{}",mt);
 		Query query = new Query().with(new Sort(Sort.Direction.DESC, "date"));
 		query.skip((page-1)*15);
-		query.limit(15);
+		query.limit(10);
 		List<NaverKBLNews> l = mt.find(query, NaverKBLNews.class);
 		return l;
 	}
