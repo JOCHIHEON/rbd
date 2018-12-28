@@ -14,7 +14,7 @@ public class Paging {
 	private Integer startBlock;
 	private Integer endBlock;
 	private Integer totalBlock;
-	private Integer viewLength=10;  // 1 페이지에 보여질 게시물 수
+	private Integer viewLength=10;   // 1 페이지에 보여질 게시물 수
 	private Integer blockLength=10; // 1 페이지에 보여질 블락 수
 	private Integer clickBlock;
 	
