@@ -29,6 +29,7 @@ public class FanBoardVO {
 	private Integer f_like;
 	@NotNull
 	private Integer ui_no;
+	private String ui_nick;
 	private Paging paging;
 	private List<FanComentVO> fanComents;
 }
