@@ -5,11 +5,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.test</groupId>
-	<artifactId>bdi-sb</artifactId>
+	<artifactId>rbd</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>bdi-sb</name>
+	<name>rbd</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
