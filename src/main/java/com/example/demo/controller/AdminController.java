@@ -64,7 +64,7 @@ public class AdminController {
 		return adminService.selectAdminView(ad_no);
 	}
 	
-	@GetMapping("/admin")
+	@GetMapping("/admin") 
 	public List<AdminInfoVO> selectListView(@RequestParam(value="clickBlock") Integer clickBlock, @RequestParam(value="ad_name") String ad_name,@RequestParam(value="ad_id") String ad_id){
 		AdminInfoVO adminVo = new AdminInfoVO();
 		adminVo.setAd_id(ad_id);
