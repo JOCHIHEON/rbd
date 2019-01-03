@@ -34,12 +34,10 @@ public class FreeBoardServiceImpl implements FreeBoardService{
 	}
 
 	@Override
-	public FreeBoardVO freeView(Integer fre_no,boolean check) {
+	public FreeBoardVO freeView(Integer fre_no) {
 		FreeBoardVO freeVo =  freeboardRepo.freeView(fre_no);
-		if(check) {
-			freeboardRepo.insertlookup(freeVo);
-			freeVo =  freeboardRepo.freeView(fre_no);
-		}
+		freeboardRepo.insertlookup(freeVo);
+		freeVo =  freeboardRepo.freeView(fre_no);
 		freeVo.setFreeComents(freeComentRepo.freeComentList(fre_no));
 		return freeVo;
 	}

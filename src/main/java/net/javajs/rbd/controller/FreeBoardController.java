@@ -52,19 +52,8 @@ public class FreeBoardController {
 	}
 	
 	@GetMapping("/freeboard/{fre_no}")
-	public FreeBoardVO freeView(@PathVariable Integer fre_no, HttpServletRequest req,HttpServletResponse res) {
-		boolean check = false;
-		Cookie[] cookies = req.getCookies();
-		Map<String, String> m = new HashMap<>();
-		for(Cookie cookie : cookies) {
-			m.put(cookie.getName(), cookie.getValue());
-		}
-		if(m.get("freeCnt")==null) {
-			res.addCookie(new Cookie("freeCnt", "freeView"+fre_no));
-			check=true;
-		}
-
-		return freeboardService.freeView(fre_no, check);
+	public FreeBoardVO freeView(@PathVariable Integer fre_no) {
+		return freeboardService.freeView(fre_no);
 	}
 	
 	@GetMapping("/freeboard")
