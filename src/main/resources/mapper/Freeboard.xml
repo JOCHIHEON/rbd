@@ -21,7 +21,7 @@
 	</delete>
 	
 	<select id="freeView" parameterType="int" resultType="freeboardVO">
-		select fre_no, ui_no,  fre_title, fre_content, fre_moddat, fre_lookupcnt, f_like from free_board
+		select fb.fre_no, fb.ui_no, fb.fre_title, fb.fre_content, fb.fre_moddat, fb.fre_lookupcnt, fb.f_like, ui.ui_nick from free_board fb, user_info ui where ui.ui_no = fb.ui_no
 		where fre_no = #{fre_no}
 	</select>
 	
