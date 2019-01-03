@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.QNACOMENT">
+<mapper namespace="net.javajs.rbd.QNACOMENT">
 	<insert id="insertQcoment" parameterType="qnacomentVO">
 		insert into qnacoment(qnaco_content, qnaco_credat, qnaco_moddate, 
 		<if test="ad_no != null">ad_no, </if>

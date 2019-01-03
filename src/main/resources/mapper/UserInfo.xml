@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.USERINFO">
+<mapper namespace="net.javajs.rbd.USERINFO">
 	<insert id="userinfoInsert" parameterType="userVO">
 		insert into
 		user_info(ui_id, ui_name, ui_pwd, ui_nick, ui_support, ui_email, ui_tell)

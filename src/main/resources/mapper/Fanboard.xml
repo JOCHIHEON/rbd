@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.FANBOARD">
+<mapper namespace="net.javajs.rbd.FANBOARD">
 	<insert id="insertFan" parameterType="fanboardVo">
 		insert into fan_board(fan_title,fan_content,fan_credat,fan_moddat,ui_no) 
 		values(#{fan_title},#{fan_content},now(), now(),#{ui_no})

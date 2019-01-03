@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.MATCH">
+<mapper namespace="net.javajs.rbd.MATCH">
 	<insert id="insertMatch" parameterType="matchVo">
 		insert into match_info(match_day, match_home, match_away, match_hscore, match_ascore, match_time, match_stadium)
 		values(#{match_day}, #{match_home}, #{match_away}, #{match_hscore}, #{match_ascore}, #{match_time}, #{match_stadium})

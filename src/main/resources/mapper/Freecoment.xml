@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.FREECOMENT">
+<mapper namespace="net.javajs.rbd.FREECOMENT">
 	<insert id="insertFreeComent" parameterType="freeComentVo">
 		insert into free_coment(freco_content,freco_credat, freco_moddat, fre_no, ui_no)
 		values(#{freco_content}, now(), now(), #{fre_no}, #{ui_no})

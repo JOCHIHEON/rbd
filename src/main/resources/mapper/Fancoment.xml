@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.FANCOMENT">
+<mapper namespace="net.javajs.rbd.FANCOMENT">
 <insert id="insertFanComent" parameterType="fanComentVo">
 		insert into fan_comment(fanco_content, fanco_credat,fanco_moddat,ui_no,fan_no)
 		values(#{fanco_content},now(),now(),#{ui_no},#{fan_no})
